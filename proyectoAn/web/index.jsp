@@ -61,7 +61,7 @@
 			</form>
 			<a href="#" class="advanced_search_icon" id="advanced_search_btn"></a>
 		</div>
-
+            <h2> holas</h2>
 		<div class="advanced_search">
 			<div class="wrapper">
 				<span class="arrow"></span>
