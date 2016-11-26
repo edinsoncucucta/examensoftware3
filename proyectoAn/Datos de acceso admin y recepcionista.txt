@@ -1,0 +1,44 @@
+Para ingresar como administrador
+correr el proyecto en la parte superior dice login:
+
+
+Administrador
+
+Email:
+bombleex@gmail.com
+password:
+123456789
+
+para realizar Reserva , registro de huesped y generar factura ingrese como
+
+Recepcinista:
+email:
+gg@gmail.com
+password
+1234567890
+
+
+
+El administrador puede agregar mas recepcinistas
+
+asegurese de correr el proyecto conectado a internet
+
+
+
+
+      <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%=c1.getFoto()%>">
+              <span class="card-title">Cuarto <%=c1.getId()%></span>
+            </div>
+            <div class="card-content">
+              <p>Cuarto de tipo <%=c1.getTipo()%></p>
+            </div>
+            <div class="card-action">
+              <a href="#">Ver info</a>
+            </div>
+          </div>
+        </div>
+      </div>
