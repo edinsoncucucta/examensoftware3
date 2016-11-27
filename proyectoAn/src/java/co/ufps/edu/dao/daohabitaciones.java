@@ -459,6 +459,21 @@ public List<habitaciones>listarh(){
                 return h;
         
     }
-  }
+    
+    public String ConsultarDisponibilidad(String id, String fecha1, String fecha2){
+     int tipo=Integer.parseInt(id);
+      String sql="SELECT * FROM  habitaciones where tipo="+tipo+" and id_hab NOT IN (select id_hab from reserva where fechainicial::timestamp::date='"+fecha1+"' or fechafin::timestamp::date='"+fecha2+"' and estado IN (1,2));";
+     ResultSet    msm= getCnn().consultaTabla(sql);
+     System.out.println(msm.toString());
+        try {
+        while(msm.next()){
+             System.out.println("hola   "+fecha1+" --"+msm.getInt(2));
+       return "si";
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return "no";
+        }
 
-
+}

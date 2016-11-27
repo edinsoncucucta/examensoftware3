@@ -165,5 +165,21 @@ public class principaldao {
         m+="</ul>";
         return m;
      }
-}
+     
+     public String tiposhs(){
+        
+       ResultSet    msm= getCnn().consultaTabla("SELECT id_tipo, nombre From tiposhabitaciones;");
+       String opcion=""; 
+    try {
+        while(msm.next()){
+             opcion+="<option value=\""+msm.getInt(1)+"\">"+msm.getString(2)+"</option>"; 
+       
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return opcion;
+        }
+     }
+
   
