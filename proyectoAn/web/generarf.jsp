@@ -220,16 +220,7 @@
                              
                                 
                             </div>
-                                <%factura  fac=n.consultarfacpor(creada.getIdReserva());
-                                %>
-                                
-			<div class="panel-body">
-                            <form acion="generarpdf.jsp" method="POST">
-                                  <input type="hidden" name="id_factura" value="<%=fac.getId()%>">
-                                  <input type="submit" value="Elegir" class="btn btn-info" min="0"/>
-                            </form>
-                                                  <a href="javascript:demoFromHTML()" class="btn btn-success btn-lg">Imprimir</a>
-					</div>
+                              
 		</div><!--/.row-->	
 		<div class="row">
 			<div class="col-md-6">
@@ -270,6 +261,20 @@
 		
                                                     
 						</table>
+                                                    
+                                                      <%
+                                ControladorNegocio n2 = new ControladorNegocio();
+                                
+                                factura  fac=n2.consultarfacpor(creada.getIdReserva());
+                                %>
+                                
+			<div class="panel-body">
+                            <form method="POST" action="pdfgen.jsp">
+                                  <input type="hidden" name="id_factura" value="<%=fac.getId()%>">
+                                  <input type="submit" value="Elegir" class="btn btn-info" min="0"/>
+                            </form>
+                                               
+					</div>
 						
 					</div>
 				</div>

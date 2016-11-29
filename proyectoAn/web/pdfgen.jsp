@@ -4,6 +4,7 @@
     Author     : macaco
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="co.ufps.edu.dto.factura"%>
 <%@page import="co.ufps.edu.dto.propiedadeshab"%>
 <%@page import="java.util.ArrayList"%>
@@ -409,6 +410,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     //TELEFONO DE LA EMPRESA DEL PADRE
     
     ArrayList<propiedadeshab>propiedades= new ArrayList();
+    propiedades=c.porpiedadesportipo(h.getTipo());
     PdfPCell usoColegio = new PdfPCell(new Paragraph("SERVICIOS ADICIONALES",
             FontFactory.getFont("arial", 14, Font.BOLD, colorLetra)));
     usoColegio.setBackgroundColor(colorTitulo);
@@ -508,7 +510,8 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(tipoDocuMadre);
 
     //ESPECIFICACION DEL TIPO DE DOCUMENTO DE LA MADRE
-    PdfPCell tipoDocMadreEsp = new PdfPCell(new Paragraph(""+r.getFechainicio(),
+     SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+    PdfPCell tipoDocMadreEsp = new PdfPCell(new Paragraph(""+sdf.format(r.getFechainicio().getTime()),
             FontFactory.getFont("arial", 10)));
     tipoDocMadreEsp.setColspan(3);
     tipoDocMadreEsp.setRowspan(1);
@@ -529,7 +532,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(numDocuMadre);
 
     //ESPECIFICACION DEL NUMERO DE DOCUMENTO DE LA MADRE
-    PdfPCell numDocMadreEsp = new PdfPCell(new Paragraph(""+r.getFechafin(),
+    PdfPCell numDocMadreEsp = new PdfPCell(new Paragraph(""+sdf.format(r.getFechafin().getTime()),
             FontFactory.getFont("arial", 10)));
     numDocMadreEsp.setColspan(3);
     numDocMadreEsp.setRowspan(1);

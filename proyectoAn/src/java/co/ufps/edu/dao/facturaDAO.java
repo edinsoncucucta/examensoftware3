@@ -26,7 +26,7 @@ import ufps.edu.co.utils.conexion.Conexion;
  */
 public class facturaDAO {
     
-    private Conexion conexion;
+    private Conexion conexion= new Conexion();
     
     public factura crearfactura(factura factu){
         
@@ -39,11 +39,9 @@ public class facturaDAO {
 		
 		try {
 			
-			if(conexion==null) 
-                        conexion= new Conexion();
-			if(conexion.getConnection()==null) 
+			
                            con = conexion.conectar("");
-			else con= conexion.getConnection();
+			
                      
 			String sql = "INSERT INTO factura (id_huesped, id_hab, total,fecha,servicios,id_reserva)  "
 					+    "values (?,?,?,?,?,?) ";
@@ -107,9 +105,8 @@ public class facturaDAO {
                 
 		try {
 			
-			if(conexion==null) conexion= new Conexion();
-			if(conexion.getConnection()==null) con = conexion.conectar("");
-			else con= conexion.getConnection();
+			 con = conexion.conectar("");
+			
 			String sql = "SELECT huesped.* " +
 "                                FROM huesped " +
 "                                    JOIN factura " +
@@ -122,18 +119,19 @@ public class facturaDAO {
 			
 			if(rst.next()){
                          
-                               h.setCc(rst.getInt("cc"));
-                                h.setIdcliente(rst.getInt("idcliente"));
+                               h.setCc(rst.getInt("cedula"));
+                                h.setIdcliente(rst.getInt("id"));
                                 h.setNacionalidad(rst.getString("nacionalidad"));
-                                h.setNombre(rst.getString("nombre"));
+                                h.setNombre(rst.getString("nombres"));
                                 h.setProcedencia(rst.getString("procedencia"));
                                 h.setApellidos(rst.getString("apellidos"));
                                 h.setDir(rst.getString("direccion"));
                                 h.setPasaporte(rst.getString("pasaporte"));
                                 h.setTele(rst.getInt("telefono"));
                                 
-                               
+                              
 			}
+                        System.out.println("HUESPED NO ENCONTRO"); 
 			
 		} catch (Exception e) {
                     System.out.println("error "+e.toString());
@@ -180,9 +178,8 @@ public class facturaDAO {
                 
 		try {
 			
-			if(conexion==null) conexion= new Conexion();
-			if(conexion.getConnection()==null) con = conexion.conectar("");
-			else con= conexion.getConnection();
+			 con = conexion.conectar("");
+			
 			String sql = "SELECT habitaciones.* " +
 "                                FROM habitaciones " +
 "                                    JOIN factura " +
@@ -254,10 +251,8 @@ public class facturaDAO {
                 
                 
 		try {
+			 con = conexion.conectar("");
 			
-			if(conexion==null) conexion= new Conexion();
-			if(conexion.getConnection()==null) con = conexion.conectar("");
-			else con= conexion.getConnection();
 			String sql = "SELECT reserva.* " +
 "                                FROM reserva " +
 "                                    JOIN factura " +
@@ -334,10 +329,9 @@ public class facturaDAO {
                 
 		try {
 			
-			if(conexion==null) conexion= new Conexion();
-			if(conexion.getConnection()==null) con = conexion.conectar("");
-			else con= conexion.getConnection();
-			String sql = "SELECT * from factura where id=?";
+			 con = conexion.conectar("");
+			
+			String sql = "SELECT * from factura where id_fac=?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, idfactura);
                        
@@ -399,9 +393,8 @@ public class facturaDAO {
                 
 		try {
 			
-			if(conexion==null) conexion= new Conexion();
-			if(conexion.getConnection()==null) con = conexion.conectar("");
-			else con= conexion.getConnection();
+			 con = conexion.conectar("");
+			
 			String sql = "SELECT * from factura where id_reserva=?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, idreserva);
