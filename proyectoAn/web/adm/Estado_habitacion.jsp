@@ -66,9 +66,9 @@
 							
 								<!-- foto input-->
 								<div class="form-group">
-									<label class="col-md-2 control-label" for="name">Descripción</label>
+									<label class="col-md-2 control-label" for="name">Nombre</label>
 									<div class="col-md-10">
-                                                                            <input id="name" name="name" type="text" placeholder="Nombre de la descripcion " class="form-control">
+                                                                            <input id="name" name="name" type="text" placeholder="Nombre de la descripcion del estado " class="form-control">
 									</div>
 								</div>
                                                                 <br>

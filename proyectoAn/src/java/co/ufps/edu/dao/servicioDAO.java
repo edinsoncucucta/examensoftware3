@@ -80,7 +80,7 @@ public class servicioDAO {
     
  }
     public String tablaservicios() throws SQLException{
-         String sql="select * from servicio;";
+         String sql="select * from servicio order by id;";
         ResultSet   msm= getCnn().consultaTabla(sql);
         
        String tabla="<div class=\"panel-footer table-responsive\"><table class=\"table table-striped\">\n" +
@@ -251,6 +251,23 @@ public class servicioDAO {
                 return servicio;
     
 }
-  
+   public Servicios consultarid(int id){
+         String sql="select * from servicio where id="+id+";";
+        Servicios e=new Servicios();
+          ResultSet res= getCnn().consultaTabla(sql);
+       
+       try {
+          while(res.next()){
+                
+             e.setId(res.getInt(1));
+             e.setNombre(res.getString(3));
+             e.setPrecio(res.getInt(4));
+            }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+         return e;
+     } 
 }
 

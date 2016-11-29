@@ -11,12 +11,14 @@
     int tipo = Integer.parseInt(request.getParameter("tipo").toString());
     int estado = Integer.parseInt(request.getParameter("estado").toString());
     String foto=request.getParameter("foto").toString();
+    String obs= request.getParameter("obs").toString();
    String m="error";
    
    datos.setId(id_hab);
     datos.setTipo(tipo);
     datos.setEstado(estado);
     datos.setFoto(foto);
+    datos.setObservacion(obs);
     m=hab.insertar1(datos);
     
     System.out.println("esteee22222:::::" + m);

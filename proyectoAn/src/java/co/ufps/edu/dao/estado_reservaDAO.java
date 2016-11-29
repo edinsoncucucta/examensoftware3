@@ -89,7 +89,7 @@ public class estado_reservaDAO {
                               tabla+="<td class=\"text-center\">"+msm.getInt(1)+"</td>";
                               tabla+="<td class=\"text-center\">"+msm.getString(2)+"</td>";
                               tabla+="<td class=\"text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"estadoreserva\" ><button type=\"warning\" class=\"btn btn-danger btn-xs\"<a type=\"hidden\" onclick=\"return confirm('Seguro de eliminar?');\"></a>Eliminar</button></form>"
-                                      +"<form class=\"form-horizontal\" action=\"editarestado_reserva.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"tiposhab\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
+                                      +"<form class=\"form-horizontal\" action=\"editarestado_reserva.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\""+msm.getString(2)+"\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
           tabla+="</tr>";
 
             }
@@ -104,4 +104,23 @@ public class estado_reservaDAO {
          }
         return cnn;
     }
+        public estadoreserva consultarid( int id){
+        estadoreserva r=new estadoreserva();
+         String sql="select * from estadoreserva where id="+id+";";
+       
+          ResultSet res= getCnn().consultaTabla(sql);
+       
+       try {
+          while(res.next()){
+                
+            r.setId(res.getInt(1));
+            r.setDescripcion(res.getString(2));
+            }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        return r;
+        }
+
 }

@@ -112,4 +112,22 @@ int id;
      
     
  }
+     public tipo_habitacion consultarid(int id){
+         tipo_habitacion t=new tipo_habitacion();
+         String sql="select * from tiposhabitaciones where id_tipo="+id+";";
+        
+          ResultSet res= getCnn().consultaTabla(sql);
+    try {
+          while(res.next()){
+                t.setId(res.getInt(1));
+                t.setNombre(res.getString(2));
+                t.setPreciobase(res.getInt(3));
+           
+            }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+         return t;
+     }
 }

@@ -120,6 +120,9 @@
         <!--<script src="js/material.js"></script>??????-->
         <script src="js/ripples.js" type="text/javascript"></script>
         <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
+         <script src="js/ajax4.js"></script>
+        <script src="js/blockUI.js"></script>
+        <script src="js/toastr.js"></script>
         <script>function index() {
             $.material.init();
         }</script>

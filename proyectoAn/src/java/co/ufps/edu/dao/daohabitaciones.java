@@ -467,7 +467,7 @@ public List<habitaciones>listarh(){
      System.out.println(msm.toString());
         try {
         while(msm.next()){
-             System.out.println("hola   "+fecha1+" --"+msm.getInt(2));
+             
        return "si";
         }
     } catch (SQLException ex) {
@@ -475,5 +475,22 @@ public List<habitaciones>listarh(){
     }
         return "no";
         }
-
+public habitaciones consultarid(int id){
+    habitaciones n=new habitaciones();
+    String sql="select * from habitaciones where id_hab="+id+";";
+        
+          ResultSet res= getCnn().consultaTabla(sql);
+    try {
+          while(res.next()){
+                
+            n.setId(res.getInt(2));
+            n.setObservacion(res.getString(6));
+            n.setFoto(res.getString(5));
+            }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    return n;
+}
 }

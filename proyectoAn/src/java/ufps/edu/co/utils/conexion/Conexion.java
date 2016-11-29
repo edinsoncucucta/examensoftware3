@@ -23,9 +23,9 @@ public class Conexion {
 	long tiempo_inicio = -1;
   	long tiempo_total = 0;
   	
-  	private final static String url ="jdbc:postgresql://localhost:5432/pyecton";//local
+  	private final static String url ="jdbc:postgresql://localhost:5432/ing";//local
 	private String usuario="postgres";	
-	private String password="macaco123";
+	private String password="123456789";
 	private final static String driver = "org.postgresql.Driver";			
 	private String error;
 		

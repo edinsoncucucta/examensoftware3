@@ -20,8 +20,6 @@ import co.ufps.edu.dto.TipoHabitacion;
 import co.ufps.edu.dto.empleado;
 import co.ufps.edu.dto.factura;
 import co.ufps.edu.dto.habitaciones;
-import co.ufps.edu.dto.propiedadeshab;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -157,9 +155,5 @@ public class ControladorNegocio {
      
      public Reserva updateReserva(Reserva r){
          return reserva.updateReserva(r);
-     }
-     
-     public ArrayList<propiedadeshab>porpiedadesportipo(int id_tipo){
-         return h.propiedadesportipo(id_tipo);
      }
 }

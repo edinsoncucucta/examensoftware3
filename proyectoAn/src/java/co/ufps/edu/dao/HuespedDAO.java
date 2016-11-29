@@ -276,7 +276,7 @@ public class HuespedDAO {
     
 }
       public String todoslosHuespedes() throws SQLException{
-         String sql="select id,nombres, apellidos,cedula,direccion,telefono,nacionalidad,pasaporte,procedencia from huesped;";
+         String sql="select id,nombres, apellidos,cedula,direccion,telefono,nacionalidad,pasaporte,procedencia from huesped order by id;";
         ResultSet   msm= getCnn().consultaTabla(sql);
         
        String tabla="<div class=\"panel-footer table-responsive\"><table class=\"table table-striped\">\n" +
@@ -321,7 +321,7 @@ public class HuespedDAO {
       }
       
        public String actualizar(Huesped h){
-     ResultSet    msm= getCnn().consultaTabla("SELECT * From huesped where id_hab="+h.getIdcliente()+";");
+     ResultSet    msm= getCnn().consultaTabla("SELECT * From huesped where id="+h.getIdcliente()+";");
     try {
         while (msm.next()){
             if(h.getNombre()==""){
@@ -349,7 +349,7 @@ public class HuespedDAO {
                 h.setPasaporte(msm.getString(10));
             }
         }   
-        String sql="UPDATE huesped SET id="+h.getIdcliente()+"id_hotel=1,nombres='"+h.getNombre()+"', apellidos='"+h.getApellidos()+"', cedula="+h.getCc()+"direccion='"+h.getDir()+"', telefono="+h.getTele()+", nacionalidad='"+h.getNacionalidad()+"',procedencia='"+h.getProcedencia()+"',pasaporte='"+h.getPasaporte()+"' WHERE id="+h.getIdcliente()+";";
+        String sql="UPDATE huesped SET id="+h.getIdcliente()+",id_hotel=1,nombres='"+h.getNombre()+"', apellidos='"+h.getApellidos()+"', cedula="+h.getCc()+", direccion='"+h.getDir()+"', telefono="+h.getTele()+", nacionalidad='"+h.getNacionalidad()+"',procedencia='"+h.getProcedencia()+"',pasaporte='"+h.getPasaporte()+"' WHERE id="+h.getIdcliente()+";";
     int i=getCnn().actualizar(sql);
     } catch (SQLException ex) {
         Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,4 +363,28 @@ public class HuespedDAO {
          }
         return cnn;
     }
+     public Huesped consultarid(int id){
+         String sql="select * from huesped where id="+id+";";
+         Huesped h=new Huesped();
+          ResultSet res= getCnn().consultaTabla(sql);
+       
+       try {
+          while(res.next()){
+                
+                h.setNombre(res.getString(3));
+                h.setApellidos(res.getString(4));
+                h.setCc(res.getInt(5));
+                h.setDir(res.getString(6));
+                h.setTele(res.getInt(7));
+                h.setProcedencia(res.getString(8));
+                h.setNacionalidad(res.getString(9));
+                h.setPasaporte(res.getString(10));
+                
+            }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+         return h;
+     }
 }

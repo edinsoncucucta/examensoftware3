@@ -11,14 +11,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ufps.edu.co.utils.conexion.Conexion;
+import ufps.edu.co.utils.conexion.clsConn;
 
 /**
  *
  * @author macaco
  */
 public class facturaDAO {
-    
+    private clsConn cnn=new clsConn();
     private Conexion conexion;
     
     public factura crearfactura(factura factu){
@@ -85,5 +88,59 @@ public class facturaDAO {
                 return factu;
         
     }
+    
+    public String BuscarFacturas(String ini, String fin) throws SQLException{
+        String sql="select * from factura where fecha::timestamp::date >='"+ini+"' and fecha::timestamp::date <='"+fin+"';";
+      ResultSet   msm= getCnn().consultaTabla(sql);
+        int total =0;
+       String tabla="<div class=\"panel-footer table-responsive\"><table class=\"table table-striped\">\n" +
+                            "<thead>\n" +
+                               "<tr Style=\"background-color:  #ee9d73; color: white;\">\n" +
+                                "<th class=\"col text-center\" >Id factura</th>\n" +
+                               "<th class=\"col text-center\" >Habitación</th>\n" +
+               "<th class=\"col text-center\" >Id Huesped</th>\n" +
+               "<th class=\"col text-center\" >Fecha</th>\n" +
+               "<th class=\"col text-center\" >Id Reserva</th>\n" +
+               "<th class=\"col text-center\" >Total</th>\n" +
+               "<th class=\"col text-center\" >Acciones</th>\n" +
+                                "</tr>\n" +
+                                   "\n" +"<tboby>";
+       
+       while(msm.next()){
+                tabla+="<tr >";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(4)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(2)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(1)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getString(5)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(7)+"</td>";
+                              tabla+="<td class=\"text-center\">"+msm.getInt(3)+"</td>";
+                              tabla+="<td class=\"text-center\">"+"<form class=\"form-horizontal\" action=\"eliminar.jsp\" method=\"post\"><input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"tabla\" value=\"prophab\" ><button type=\"warning\" class=\"btn btn-danger btn-xs\"<a type=\"hidden\" onclick=\"return confirm('Seguro de eliminar?');\"></a>Eliminar</button></form>"
+                                      +"<form class=\"form-horizontal\" action=\"editarpropiedadeshab.jsp\" method=\"post\"> <input type=\"hidden\" name=\"id\" value=\""+msm.getInt(1)+"\" ><input type=\"hidden\" name=\"name\" value=\""+msm.getString(2)+"\" ><button type=\"warning\" class=\"btn btn-warning btn-xs\">Editar</button></form>"+ "</td>";
+          tabla+="</tr>";
+total+=msm.getInt(3);
+
+            }
+
+      
+       tabla+="</tbody></table>";
+          // tabla+= "<table><tr Style=\"background-color:  #2ca88d; color: white;\"><th class=\"col text-center\" >TOTAL ="+total+"</th></tr></table></div>" ;
+        
+           tabla+="<div class=\"panel-footer table-responsive\"><table class=\"table table-striped\">\n" +
+                            "<thead>\n" +
+                               "<tr Style=\"background-color:  #2ca88d; color: white;\">\n" +
+                                "<th class=\"col text-center\" >El total de las facturas es: $"+total+"</th>\n"+
+                                "</tr></table>";
+                   return (tabla);
+        }
+
+  public clsConn getCnn() {
+        return cnn;
+        
+        
+    }
+        
+        
+      
+    
     
 }
