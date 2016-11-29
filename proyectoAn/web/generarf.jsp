@@ -151,10 +151,10 @@
        String concatena="";
        
        for(Item i:itemspedidos){
-           concatena+="idservicio  "+i.getIdser()+" precio :"+i.getPrecio()+"\n";
+           concatena+="Servicio :   "+i.getId()+"  precio :"+i.getPrecio()+"\n";
        }
        f.setServicios(concatena);
-       n.createfactura(f);
+       factura creada=n.createfactura(f);
        
        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
        
@@ -220,10 +220,14 @@
                              
                                 
                             </div>
-                                
+                                <%factura  fac=n.consultarfacpor(creada.getIdReserva());
+                                %>
                                 
 			<div class="panel-body">
-						
+                            <form acion="generarpdf.jsp" method="POST">
+                                  <input type="hidden" name="id_factura" value="<%=fac.getId()%>">
+                                  <input type="submit" value="Elegir" class="btn btn-info" min="0"/>
+                            </form>
                                                   <a href="javascript:demoFromHTML()" class="btn btn-success btn-lg">Imprimir</a>
 					</div>
 		</div><!--/.row-->	

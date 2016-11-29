@@ -86,4 +86,8 @@ public class ControladorReserva {
     public habitaciones cuartooffactura(int id_fac){
         return factura.habitacionoffactura(id_fac);
     }
+    
+    public factura consultarfac(int id_reserva){
+        return factura.consultarFacturaporreserva(id_reserva);
+    }
 }

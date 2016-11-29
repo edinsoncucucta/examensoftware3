@@ -7,10 +7,13 @@ package Negocio;
 
 import co.ufps.edu.dao.EstadoHabitacionDAO;
 import co.ufps.edu.dao.daohabitaciones;
+import co.ufps.edu.dao.propiedadeshabDAO;
 import co.ufps.edu.dao.tipoHabitacionesDAO;
 import co.ufps.edu.dto.EstadoHabitacion;
 import co.ufps.edu.dto.TipoHabitacion;
 import co.ufps.edu.dto.habitaciones;
+import co.ufps.edu.dto.propiedadeshab;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,12 +25,14 @@ public class ControladorHabitacion {
     private daohabitaciones habi;
     private tipoHabitacionesDAO tipoH;
     private EstadoHabitacionDAO estado;
+    private propiedadeshabDAO propiedades;
     
     
     public ControladorHabitacion (){
         habi= new daohabitaciones();
         tipoH = new tipoHabitacionesDAO();
         estado=new EstadoHabitacionDAO();
+        propiedades= new propiedadeshabDAO();
     }
     
     
@@ -64,4 +69,9 @@ public class ControladorHabitacion {
     public habitaciones buscahabiporid(int id){
         return habi.buscarh(id);
     }
+    
+   public ArrayList<propiedadeshab> propiedadesportipo(int idtipo){
+      return  propiedades.buscarpropiedadespor(idtipo);
+       
+   }
 }

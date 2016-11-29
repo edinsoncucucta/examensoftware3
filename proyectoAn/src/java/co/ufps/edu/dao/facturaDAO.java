@@ -386,6 +386,73 @@ public class facturaDAO {
 		}
                 return r;
     }
+     
+     
+     public factura consultarFacturaporreserva(int idreserva){
+     		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+               
+                factura  r = new factura();
+                 
+                
+                
+		try {
+			
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * from factura where id_reserva=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, idreserva);
+                       
+			rst = ps.executeQuery();
+                        
+			
+			if(rst.next()){
+                         
+                         r.setTotal(rst.getInt("total"));
+                         r.setId(rst.getInt("id_fac"));
+                         
+                              
+                               
+			}
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			        if (rst != null) {
+        try {
+            rst.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (ps != null) {
+        try {
+            ps.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (con != null) {
+        try {
+            con.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+                    
+                    
+                    
+                    
+                    
+						
+			ps=null;
+			con=null;
+                        rst=null;
+                        
+		}
+                return r;
+    }
+    
     
     
 }
