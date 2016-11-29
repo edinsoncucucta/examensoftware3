@@ -9,10 +9,12 @@ import co.ufps.edu.dao.ItemDao;
 import co.ufps.edu.dao.ReservaDAO;
 import co.ufps.edu.dao.facturaDAO;
 import co.ufps.edu.dao.servicioDAO;
+import co.ufps.edu.dto.Huesped;
 import co.ufps.edu.dto.Item;
 import co.ufps.edu.dto.Reserva;
 import co.ufps.edu.dto.Servicios;
 import co.ufps.edu.dto.factura;
+import co.ufps.edu.dto.habitaciones;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,5 +71,19 @@ public class ControladorReserva {
     
     public Reserva updateReserva(Reserva r){
         return reserva.updateReserva(r);
+    }
+    public factura ConsultarFActura(int id_fac){
+        return factura.consultarFactura(id_fac);
+    }
+    
+    public Huesped huespedoffactura(int id_fac){
+        return factura.huespedofactura(id_fac);
+    }
+    public Reserva reservaoffactura(int id_fac){
+        return factura.reservaoffactura(id_fac);
+    }
+    
+    public habitaciones cuartooffactura(int id_fac){
+        return factura.habitacionoffactura(id_fac);
     }
 }

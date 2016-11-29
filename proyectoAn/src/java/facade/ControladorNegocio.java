@@ -162,4 +162,18 @@ public class ControladorNegocio {
      public ArrayList<propiedadeshab>porpiedadesportipo(int id_tipo){
          return h.propiedadesportipo(id_tipo);
      }
+     
+     public Reserva reservaoffactura(int id_fac){
+         return reserva.reservaoffactura(id_fac);
+     } 
+     public Huesped huespedoffactura(int id_fac){
+         return reserva.huespedoffactura(id_fac);
+     }
+     
+     public habitaciones habitacionoffactura(int id_Fact){
+         return reserva.cuartooffactura(id_Fact);
+     }
+     public factura consultarfac(int id_Fac){
+         return reserva.ConsultarFActura(id_Fac);
+     }
 }

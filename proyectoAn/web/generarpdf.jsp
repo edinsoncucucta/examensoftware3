@@ -4,6 +4,13 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.factura"%>
+<%@page import="co.ufps.edu.dto.propiedadeshab"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="co.ufps.edu.dto.Huesped"%>
+<%@page import="co.ufps.edu.dto.habitaciones"%>
+<%@page import="co.ufps.edu.dto.Reserva"%>
+<%@page import="facade.ControladorNegocio"%>
 <%@page import="com.itextpdf.text.pdf.BaseFont"%>
 <%@page import="com.itextpdf.text.html.WebColors"%>
 <%@page import="com.itextpdf.text.pdf.PdfPCell"%>
@@ -13,13 +20,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.itextpdf.text.*" %>
 <%
+    int id_factura=0 ;
     try{
-         int id_factura =Integer.parseInt(request.getParameter("id_factura"));
+         id_factura =Integer.parseInt(request.getParameter("id_factura"));
     }catch(Exception e){
         response.sendRedirect("login.jsp");
     }
    
+    ControladorNegocio c = new ControladorNegocio();
     
+    Reserva r=c.reservaoffactura(id_factura);
+    habitaciones h=c.habitacionoffactura(id_factura);
+    Huesped hue=c.huespedoffactura(id_factura);
+    factura consultarf=c.consultarfac(id_factura);
     
     
      response.setContentType("application/pdf");
@@ -90,7 +103,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     fundado.setBorderColor(BaseColor.WHITE);
     tablaEncabezado.addCell(fundado);
 
-    PdfPCell tituloForm = new PdfPCell(new Paragraph("Factura de Cliente Ejemplo1",
+    PdfPCell tituloForm = new PdfPCell(new Paragraph("Factura de Cliente "+hue.getNombre(),
             FontFactory.getFont("arial", 10, Font.BOLD)));
     tituloForm.setColspan(4);
     tituloForm.setRowspan(1);
@@ -142,7 +155,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(gradoMatricula);
 
     //ESPECIFICACION DEL GRADO EN QUE SE MATRICULA
-    PdfPCell gradoMatriculaEsp = new PdfPCell(new Paragraph("104",
+    PdfPCell gradoMatriculaEsp = new PdfPCell(new Paragraph(""+h.getId(),
             FontFactory.getFont("arial", 10)));
     gradoMatriculaEsp.setColspan(3);
     gradoMatriculaEsp.setRowspan(1);
@@ -163,7 +176,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(tipoEstudiante);
 
     //ESPECIFICACION DEL TIPO DE ESTUDIANTE
-    PdfPCell tipoEstuEsp = new PdfPCell(new Paragraph("Ejecutivo",
+    PdfPCell tipoEstuEsp = new PdfPCell(new Paragraph(""+h.getTipo(),
             FontFactory.getFont("arial", 10)));
     tipoEstuEsp.setColspan(2);
     tipoEstuEsp.setRowspan(1);
@@ -184,7 +197,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(tipoMatricula);
 
     //ESPECIFICACION DEL TIPO DE MATRICULA
-    PdfPCell tipoMatriculaEsp = new PdfPCell(new Paragraph("Confortable",
+    PdfPCell tipoMatriculaEsp = new PdfPCell(new Paragraph(h.getObservacion(),
             FontFactory.getFont("arial", 10)));
     tipoMatriculaEsp.setColspan(5);
     tipoMatriculaEsp.setRowspan(1);
@@ -216,7 +229,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(tipoDocuPadre);
 
     //ESPECIFICACION DEL TIPO DE DOCUMENTO DEL PADRE
-    PdfPCell tipoDocPadreEsp = new PdfPCell(new Paragraph("2",
+    PdfPCell tipoDocPadreEsp = new PdfPCell(new Paragraph(""+hue.getIdcliente(),
             FontFactory.getFont("arial", 10)));
     tipoDocPadreEsp.setColspan(2);
     tipoDocPadreEsp.setRowspan(1);
@@ -237,7 +250,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(numDocuPadre);
 
     //ESPECIFICACION DEL NUMERO DE DOCUMENTO DEL PADRE
-    PdfPCell numDocPadreEsp = new PdfPCell(new Paragraph("1111111111",
+    PdfPCell numDocPadreEsp = new PdfPCell(new Paragraph(""+hue.getCc(),
             FontFactory.getFont("arial", 10)));
     numDocPadreEsp.setColspan(4);
     numDocPadreEsp.setRowspan(1);
@@ -258,7 +271,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(expPadre);
 
     //ESPECIFICACION DEL NUMERO DE DOCUMENTO DEL PADRE
-    PdfPCell expPadreEsp = new PdfPCell(new Paragraph("andres",
+    PdfPCell expPadreEsp = new PdfPCell(new Paragraph(hue.getNombre(),
             FontFactory.getFont("arial", 10)));
     expPadreEsp.setColspan(5);
     expPadreEsp.setRowspan(1);
@@ -279,7 +292,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(nombrePadre);
 
     //ESPECIFICACION DEL NOMBRE DEL PADRE
-    PdfPCell nombrePadreEsp = new PdfPCell(new Paragraph("casta pacheco",
+    PdfPCell nombrePadreEsp = new PdfPCell(new Paragraph(hue.getApellidos(),
             FontFactory.getFont("arial", 10)));
     nombrePadreEsp.setColspan(9);
     nombrePadreEsp.setRowspan(1);
@@ -300,7 +313,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(fechaNacPadre);
 
     //ESPECIFICACION DE LA FECHA DE NACIMIENTO DEL PADRE
-    PdfPCell fechaNacPadreEsp = new PdfPCell(new Paragraph("mz 12 lt 12",
+    PdfPCell fechaNacPadreEsp = new PdfPCell(new Paragraph(hue.getDir(),
             FontFactory.getFont("arial", 10)));
     fechaNacPadreEsp.setColspan(4);
     fechaNacPadreEsp.setRowspan(1);
@@ -321,7 +334,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(ocupacionPadre);
 
     //ESPECIFICACION DE LA OCUPACION DEL PADRE
-    PdfPCell ocupacionPadreEsp = new PdfPCell(new Paragraph("66666",
+    PdfPCell ocupacionPadreEsp = new PdfPCell(new Paragraph(""+hue.getTele(),
             FontFactory.getFont("arial", 10)));
     ocupacionPadreEsp.setColspan(5);
     ocupacionPadreEsp.setRowspan(1);
@@ -342,7 +355,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(empresaPadre);
 
     //ESPECIFICACION DEL NOMBRE DE LA EMPRESA DEL PADRE
-    PdfPCell empresaPadreEsp = new PdfPCell(new Paragraph("Colombiana",
+    PdfPCell empresaPadreEsp = new PdfPCell(new Paragraph(hue.getNacionalidad(),
             FontFactory.getFont("arial", 10)));
     empresaPadreEsp.setColspan(8);
     empresaPadreEsp.setRowspan(1);
@@ -363,7 +376,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(dirEmpPadre);
 
     //ESPECIFICACION DE LA DIRECCION DE LA EMPRESA DEL PADRE
-    PdfPCell dirEmpPadreEsp = new PdfPCell(new Paragraph("Pamplona",
+    PdfPCell dirEmpPadreEsp = new PdfPCell(new Paragraph(hue.getProcedencia(),
             FontFactory.getFont("arial", 10)));
     dirEmpPadreEsp.setColspan(6);
     dirEmpPadreEsp.setRowspan(1);
@@ -384,7 +397,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(emailPadre);
 
     //ESPECIFICACION DEL EMAIL DEL PADRE
-    PdfPCell emailPadreEsp = new PdfPCell(new Paragraph("1233232",
+    PdfPCell emailPadreEsp = new PdfPCell(new Paragraph(hue.getPasaporte(),
             FontFactory.getFont("arial", 10)));
     emailPadreEsp.setColspan(6);
     emailPadreEsp.setRowspan(1);
@@ -395,7 +408,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
 
     //TELEFONO DE LA EMPRESA DEL PADRE
     
-    
+    ArrayList<propiedadeshab>propiedades= new ArrayList();
     PdfPCell usoColegio = new PdfPCell(new Paragraph("SERVICIOS ADICIONALES",
             FontFactory.getFont("arial", 14, Font.BOLD, colorLetra)));
     usoColegio.setBackgroundColor(colorTitulo);
@@ -407,8 +420,8 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(usoColegio);
 
     //LISTA PARA REGISTRO CIVIL
-    int num=7;
-    for(int i=1;i<=num;i++){
+    int num=propiedades.size();
+    for(propiedadeshab p : propiedades){
         ZapfDingbatsList listadoRegisCivil = new ZapfDingbatsList(52, 4);
     ListItem regisCivil = new ListItem(" ", FontFactory.getFont("arial", 7, Font.BOLD));
     listadoRegisCivil.add(regisCivil);
@@ -424,7 +437,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(chuloRegistroCivil);
 
     //REGITRO CIVIL
-    PdfPCell registroCivil = new PdfPCell(new Paragraph("REGISTRO CIVIL",
+    PdfPCell registroCivil = new PdfPCell(new Paragraph(p.getDescripcion(),
             FontFactory.getFont("arial", 10)));
     registroCivil.setColspan(3);
     registroCivil.setRowspan(1);
@@ -495,7 +508,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(tipoDocuMadre);
 
     //ESPECIFICACION DEL TIPO DE DOCUMENTO DE LA MADRE
-    PdfPCell tipoDocMadreEsp = new PdfPCell(new Paragraph("12/5656/676",
+    PdfPCell tipoDocMadreEsp = new PdfPCell(new Paragraph(""+r.getFechainicio(),
             FontFactory.getFont("arial", 10)));
     tipoDocMadreEsp.setColspan(3);
     tipoDocMadreEsp.setRowspan(1);
@@ -516,7 +529,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(numDocuMadre);
 
     //ESPECIFICACION DEL NUMERO DE DOCUMENTO DE LA MADRE
-    PdfPCell numDocMadreEsp = new PdfPCell(new Paragraph("111/111/1111",
+    PdfPCell numDocMadreEsp = new PdfPCell(new Paragraph(""+r.getFechafin(),
             FontFactory.getFont("arial", 10)));
     numDocMadreEsp.setColspan(3);
     numDocMadreEsp.setRowspan(1);
@@ -537,7 +550,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(expMadre);
 
     //ESPECIFICACION DEL NUMERO DE DOCUMENTO DE LA MADRE
-    PdfPCell expMadreEsp = new PdfPCell(new Paragraph("123.00",
+    PdfPCell expMadreEsp = new PdfPCell(new Paragraph("$ "+consultarf.getTotal(),
             FontFactory.getFont("arial", 10)));
     expMadreEsp.setColspan(5);
     expMadreEsp.setRowspan(1);
