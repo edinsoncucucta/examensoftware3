@@ -61,7 +61,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario Datos de la habitacion</div>
                         <div class="panel-body">
-
+                                 <form name="formHabitacion" id="formHabitacion" enctype="multipart/form-data" action="registradohabitacion.jsp" method="post">
                             <!-- id input-->
                             <div class="form-group">	
                                 <label class="col-md-2 control-label" for="idh">ID de la habitacion</label>
@@ -108,24 +108,26 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="foto">Direccion de la foto</label>
                             <div class="col-md-10">
-                                <input id="foto" name="foto" type="text" placeholder="prin/img/property_3.jpg" value="prin/img/property_3.jpg" class="form-control">
+                                <input id="foto" name="name" type="text"  class="form-control">
+                                <input type="file" name="archivo" accept=".jpg" />
+                            
                             </div>
                         </div>
                         <br>
                           <div class="form-group">
                             <label class="col-md-2 control-label" for="obs">Observaciones de la Habitacion</label>
                             <div class="col-md-10">
-                                <input id="obs" name="obs" type="text" placeholder=""  class="form-control">
+                                <textarea id="obs" name="obs" type="text" placeholder=""  class="form-control"></textarea>
                             </div>
                         </div>
                         <br>
                         <!-- Form actions -->
                         <div class="form-group">
                             <div class="col-md-12 widget-right ">
-                                <button class="btn btn-deep-orange btn-md pull-right" onclick="Ingresarhab()">Guardar</button>
+                                <button class="btn btn-deep-orange btn-md pull-right">Guardar</button>
                             </div>
                         </div>
-
+                                 </form>
                     </div>
                 </div>         
             </div>
@@ -141,11 +143,6 @@
                 out.print(h.habitaciones());
             %>
         </div>
-
-
-
-
-
 
         <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
         <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>

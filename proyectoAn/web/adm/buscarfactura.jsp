@@ -67,7 +67,7 @@
             function muestraMensaje() {
 
                 var fechas = document.getElementById('fechas').value;
-                alert(fechas);
+             
 
                 var msg = "";
 
@@ -77,7 +77,7 @@
                     var f = fechas.split(" - ");
                     var fechaIni = f[0];
                     var fechaFin = f[1];
-                    alert("test");
+                  
                     var xhttp = new XMLHttpRequest();
                     
                     xhttp.onreadystatechange = function () {

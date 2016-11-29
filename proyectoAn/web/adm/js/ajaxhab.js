@@ -128,6 +128,7 @@ function Ingresarhab() {
                 //esto es lo q sale en rojo
                // document.getElementById('algo').innerHTML = sub;
                 setTimeout("espera()",900);
+                 
           
         }
     }
@@ -152,4 +153,3 @@ function espera(){
        javascript:location.reload();
            
 }
-
