@@ -1,27 +1,25 @@
 <%-- 
-    Document   : editar_Huesped
-    Created on : 31/05/2016, 01:05:31 PM
+    Document   : Datos_hotel
+    Created on : 4/05/2016, 06:45:15 AM
     Author     : EDINSON
 --%>
 
+<%@page import="co.ufps.edu.dto.Huesped"%>
 <%@page import="co.ufps.edu.dao.HuespedDAO"%>
+<%@page import="co.ufps.edu.dto.empleado"%>
+<%@page import="facade.ControladorNegocio"%>
+<%@page import="co.ufps.edu.dao.datoshoteldao"%>
+<%@page import="co.ufps.edu.dto.principal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-     <%
-        int Param1= Integer.parseInt(request.getParameter ("id"));
-        String Param2= request.getParameter ("tabla");
-        %>
- 
-
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
     <head>
-   
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ACTUALIZACION DE EMPLEADO</title>
 
-  <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DATOS DEL HOTEL</title>
+
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css.map" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap.css.map" rel="stylesheet">
@@ -42,17 +40,22 @@
         <script src="js/respond.min.js"></script>
         <![endif]-->
 
-</head>
+    </head>
 
-<body>
-		<jsp:include page="menuadm.jsp"></jsp:include>
-									
-		<div class="row">
+    <body onload="index();">
+        <jsp:include page="menuadm.jsp"></jsp:include>
+        <div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header text-center">Actualizar datos del empleado</h1>
+				<h1 class="page-header text-center">Actualizar datos del huesped</h1>
 			</div>
 		</div><!--/.row-->
-		
+		   <%
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        String Param2= request.getParameter ("tabla");
+           HuespedDAO hid=new HuespedDAO();
+           Huesped hd= hid.consultarid(Param1);
+        %>
+ 
 		
 		<div class="row">
 			<div class="col-md-12">
@@ -65,7 +68,7 @@
 							<fieldset>
 								<!-- id input-->
 								<% 
-                                                                    out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Id del empleado </label>"+
+                                                                    out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Id del huesped </label>"+
 									"<div class=\"col-md-10\">"+
 									"<input id=\"idh\" name=\"idh\" type=\"hidden\" class=\"form-control\" value=\""+Param1+"\">"+
 									"<p class=\"form-control-static\">"+Param1+"  Huesped "+Param2+"</p>"+
@@ -76,21 +79,21 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="name">Nombre del huesped</label>
 									<div class="col-md-10">
-									<input id="name" name="name" type="text" placeholder="Nombre" class="form-control" required>
+									<input id="name" name="name" type="text" value="<%out.print(hd.getNombre()); %>" class="form-control" required>
 									</div>
 								</div>
                                                                 <!-- apellido input-->
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="apell">Apellido del huesped</label>
 									<div class="col-md-10">
-									<input id="apell" name="apell" type="text" placeholder="Apellidos" class="form-control" required>
+									<input id="apell" name="apell" type="text" value="<%out.print(hd.getApellidos()); %>" class="form-control" required>
 									</div>
 								</div>
                                                                   <!-- cedula input-->
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="cedula">Documento de identificacion</label>
 									<div class="col-md-10">
-										<input id="cedula" name="cedula" type="number"  class="form-control" required>
+										<input id="cedula" name="cedula" type="number"  class="form-control" value="<%out.print(hd.getCc()); %>" required>
 									</div>
 								</div>
                                                                  
@@ -98,7 +101,7 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="direccion">Direccion</label>
 									<div class="col-md-10">
-									<input id="cont" name="cont" type="text" class="form-control" required>
+									<input id="cont" name="cont" type="text" class="form-control" value="<%out.print(hd.getDir()); %>" required>
 									</div>
 								</div>
 							
@@ -107,7 +110,7 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="telefono">Telefono</label>
 									<div class="col-md-10">
-										<input id="tel" name="tel" type="number"  class="form-control" required>
+										<input id="tel" name="tel" type="number"  class="form-control" value="<%out.print(hd.getTele()); %>" required>
 									</div>
 								</div>
 							
@@ -115,14 +118,14 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="nac">Nacionalidad del huesped</label>
 									<div class="col-md-10">
-									<input id="nac" name="nac" type="text" placeholder="Nacionalidad" class="form-control" required>
+									<input id="nac" name="nac" type="text" class="form-control" value="<%out.print(hd.getNacionalidad()); %>" required>
 									</div>
 								</div>
                                                                   
                                                                 <div class="form-group">
 									<label class="col-md-2 control-label" for="pro">Procedencia del huesped</label>
 									<div class="col-md-10">
-									<input id="pro" name="pro" type="text" placeholder="Procedencia" class="form-control" required>
+									<input id="pro" name="pro" type="text"  class="form-control" value="<%out.print(hd.getProcedencia()); %>" required>
 									</div>
 								</div>
                                                                   <div class="form-group">
@@ -156,40 +159,41 @@
            out.print(h.todoslosHuespedes());
             %>
                 </div>
-			
         
- 
-		  
+        
+        <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="js/tether.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.js" type="text/javascript"></script>
+        <script src="js/materialize.js" type="text/javascript"></script>
 
-	 <script src="js/jquery-2.1.4.min.js"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/tether.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/material.js"></script>
-        <!--<script src="js/materialize.js"></script>
-
-        <script src="js/chart.min.js"></script>
+        <!--<script src="js/chart.min.js"></script>
         <script src="js/chart-data.js"></script>
-        <script src="js/easypiechart.js"34></script>
+        <script src="js/easypiechart.js"></script>
         <script src="js/easypiechart-data.js"></script>
        
         <!--<script src="js/material.js"></script>??????-->
-        <script src="js/ripples.js"></script>
-         <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/ripples.js" type="text/javascript"></script>
+        <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
         <script>function index() {
-           $.material.init();
+            $.material.init();
         }</script>
-	<script>
-		
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
-</body>
+        <script>
+
+
+            $(window).on('resize', function () {
+                if ($(window).width() > 768)
+                    $('#sidebar-collapse').collapse('show')
+            })
+            $(window).on('resize', function () {
+                if ($(window).width() <= 767)
+                    $('#sidebar-collapse').collapse('hide')
+            })
+        </script>	
+    </body>
 
 </html>
+
 

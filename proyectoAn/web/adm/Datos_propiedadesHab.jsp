@@ -72,12 +72,12 @@
                                                                 <br>
                                                                     <br>
                                                                 <!-- incremento input-->
-								<!--<div class="form-group">
-									<label class="col-md-2 control-label" for="inc">Valor incremento</label>
-									<div class="col-md-10">
-                                                                            <input id="inc" name="inc" type="number" class="form-control" required="">
-									</div>
-								</div>-->
+								<div class="form-group">
+									<!--<label class="col-md-2 control-label" for="inc">Valor incremento</label>-->
+									
+                                                                            <input id="inc" name="inc" type="hidden" value="0" class="form-control">
+									
+								</div>
                                                                 <br>
                                                                 <br>
  
@@ -122,6 +122,9 @@
         <!--<script src="js/material.js"></script>??????-->
         <script src="js/ripples.js" type="text/javascript"></script>
         <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <script src="js/ajax3.js"></script>
+        <script src="js/blockUI.js"></script>
+        <script src="js/toastr.js"></script>
         <script>function index() {
             $.material.init();
         }</script>

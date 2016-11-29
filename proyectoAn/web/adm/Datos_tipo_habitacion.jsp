@@ -139,11 +139,11 @@
             })
         </script>	
     </body>
-
-    <%} else {
+   <%} else {
 
             response.sendRedirect("../login.jsp");
         }
     %>
+
 
 </html>

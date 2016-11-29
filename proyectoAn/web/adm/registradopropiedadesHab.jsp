@@ -8,16 +8,16 @@
 <jsp:useBean id="datos" class="co.ufps.edu.dto.propiedadeshab" scope="session"></jsp:useBean>   
 <%
     
-    int incr  = Integer.parseInt(request.getParameter("inc").toString());
+   // int incr  = Integer.parseInt(request.getParameter("inc").toString());
     String name=request.getParameter("name").toString();
    
    
     
   
-    datos.setInc(incr);
+    datos.setInc(0);
     datos.setDescripcion(name);
   String msm=  prop.insertar(datos);
-    
+    System.out.print("hola:::"+msm);
     out.println(msm);
     
     

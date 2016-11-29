@@ -11,7 +11,7 @@ function Ingresarhab() {
     var tipo= document.getElementById('tipo').value;
     var estado= document.getElementById('estado').value;
     var foto = document.getElementById('foto').value;
-    
+    var obs =document.getElementById('obs');
     var xhttp = new XMLHttpRequest();
     var msg = "";
        if (idh===""){ 
@@ -144,7 +144,7 @@ function Ingresarhab() {
             opacity: .5,
             color: '#fff'
         }});
-    var text = "registradohabitacion.jsp?idh="+idh+"&tipo="+tipo+"&estado="+estado+"&foto="+foto;
+    var text = "registradohabitacion.jsp?idh="+idh+"&tipo="+tipo+"&estado="+estado+"&foto="+foto+"&obs="+obs;
     xhttp.open("post", text, true); 
     xhttp.send();
 }}

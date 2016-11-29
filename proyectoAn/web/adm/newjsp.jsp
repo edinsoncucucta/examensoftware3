@@ -1,14 +1,12 @@
 <%-- 
-    Document   : Datos_hotel
-    Created on : 4/05/2016, 06:45:15 AM
+    Document   : editartipohab
+    Created on : 17/05/2016, 09:07:20 PM
     Author     : EDINSON
 --%>
-
-
-<%@page import="co.ufps.edu.dto.empleado"%>
-<%@page import="facade.ControladorNegocio"%>
-<%@page import="co.ufps.edu.dao.cargo_emp_DAO"%>
-<%@page import="co.ufps.edu.dao.estado_habDAO"%>
+<%@page import="co.ufps.edu.dao.tipohabitaciondao"%>
+<%
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
@@ -16,7 +14,7 @@
    
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CARGOS</title>
+<title>REGISTRO TIPO DE HABITACIONES</title>
 
   <link href="css/bootstrap-theme.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css.map" rel="stylesheet">
@@ -43,71 +41,71 @@
 
 <body>
 		<jsp:include page="menuadm.jsp"></jsp:include>
-                
-                             	<%
-  ControladorNegocio c4 = new ControladorNegocio();
- empleado emp=(empleado)session.getAttribute("EmpleadoLogin");
- //if(emp!=null){
-  if(true){
- %>
 									
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header text-center">Cargos del empleado</h1>
+				<h1 class="page-header text-center">Datos tipo de la habitacion</h1>
 			</div>
 		</div><!--/.row-->
-		
 		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario datos estados de la habitacion</div>
+					<div class="panel-heading"><svg class="glyph stroked email"><use xlink:href="#stroked-email"></use></svg> Formulario editar tipo de la habitacion</div>
 					<div class="panel-body">
-						
-							
-								<!-- foto input-->
-								<div class="form-group">
-									<label class="col-md-2 control-label" for="name">Nombre del cargo</label>
+						<form class="form-horizontal" action="actualizar_tipo_habitacion.jsp" method="post">
+                                                    <fieldset>
+								<!-- id input-->
+								<% 
+                                                                    out.print("<div class=\"form-group\"> <label class=\"col-md-2 control-label\" for=\"idh\">Tipo de Habitacion </label>"+
+									"<div class=\"col-md-10\">"+
+									"<input id=\"idh\" name=\"idh\"type=\"hidden\"  class=\"form-control\" value=\""+Param1+"\" placeholder=\""+Param1+"\">"+
+									"<p class=\"form-control-static\"> "+Param1+"</p>"+
+                                                                            "</div></div>");
+                                                                                %>
+                                                                <!-- name input -->
+                                                                <div class="form-group">
+									<label class="col-md-2 control-label" for="name">Nombre del tipo de habitacion</label>
 									<div class="col-md-10">
-                                                                            <input id="name" name="name" type="text"  class="form-control" required="">
+										<input id="name" name="name" type="text" placeholder="Nombre de la descripcion " class="form-control">
 									</div>
 								</div>
-                                                                <br>
-                                                                <br>
- 	
-									
-								
+                                                                <!-- Precio input-->
+								<div class="form-group">
+									<label class="col-md-2 control-label" for="precio">Precio base</label>
+									<div class="col-md-10">
+										<input id="precio" name="precio" type="number" class="form-control">
+									</div>
+								</div>
 								
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
-                                                                            <button onclick="cargoempleado()" class="btn btn-deep-orange btn-md pull-right">Guardar</button>
+										<button type="submit" class="btn btn-deep-orange btn-md pull-right">Guardar</button>
 									</div>
 								</div>
-							
-                                            </div>
-                                        </div>         
-                                    </div>
-                                </div>    
-                                            <div class="row">
+							</fieldset>
+						</form>
+					</div>
+				</div>
+                            </div>
+                </div>
+		<div class="row">
 			<div class="col-md-12">
-				<h1 class="page-header text-center">Listado de cargos</h1>
+				<h1 class="page-header text-center">Listado tipos de las habitaciones</h1>
 			</div>
 		</div><!--/.row-->
 		<div class="col-md-12">
-                                              <%
-           cargo_emp_DAO  h=new cargo_emp_DAO();
-           out.print(h.cargos());
+            <%
+            tipohabitaciondao tipoh=new tipohabitaciondao();
+           out.print(tipoh.tipos());
             %>
                 </div>
 					
+				</div>	
+                 
 				
-        
-  		       <%}
- else{
-     response.sendRedirect("../login.jsp"); 
- }
-%>
+		
 		  
 
 	 <script src="js/jquery-2.1.4.min.js"></script>
@@ -128,9 +126,6 @@
         <script>function index() {
            $.material.init();
         }</script>
-        <script src="js/ajax8.js"></script>
-        <script src="js/blockUI.js"></script>
-        <script src="js/toastr.js"></script>
 	<script>
 		
 
@@ -144,4 +139,6 @@
 </body>
 
 </html>
+
+
 

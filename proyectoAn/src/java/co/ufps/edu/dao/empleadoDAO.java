@@ -5,6 +5,7 @@
  */
 package co.ufps.edu.dao;
 
+import co.ufps.edu.dto.Huesped;
 import co.ufps.edu.dto.empleado;
 import co.ufps.edu.dto.estadoreserva;
 import java.sql.Connection;
@@ -235,5 +236,27 @@ conexion.cerrarConexion();
                 }
                 return emp;
          
+     }
+     public empleado consultarid(int id){
+         String sql="select * from empleados where id="+id+";";
+        empleado e=new empleado();
+          ResultSet res= getCnn().consultaTabla(sql);
+       
+       try {
+          while(res.next()){
+                
+             e.setId(res.getInt(1));
+              e.setNombre(res.getString(2));
+              e.setApellidos(res.getString(3));
+              e.setEmail(res.getString(5));
+              e.setCargo(res.getInt(7));
+              e.setCedula(res.getInt(8));
+              e.setTelefono(res.getInt(9));
+            }
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+         return e;
      }
 }

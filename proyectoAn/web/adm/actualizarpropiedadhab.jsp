@@ -10,10 +10,10 @@
 <%
     int id=Integer.parseInt(request.getParameter("idh"));
     String nombre = request.getParameter("name");
-    int inc = Integer.parseInt(request.getParameter("inc"));
+    
    datos.setId(id);
    datos.setDescripcion(nombre);
-   datos.setInc(inc);
+   datos.setInc(0);
     prophab.actualizar(datos);
     
  response.sendRedirect("Datos_propiedadesHab.jsp");

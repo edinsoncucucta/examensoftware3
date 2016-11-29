@@ -112,6 +112,12 @@
                             </div>
                         </div>
                         <br>
+                          <div class="form-group">
+                            <label class="col-md-2 control-label" for="obs">Observaciones de la Habitacion</label>
+                            <div class="col-md-10">
+                                <input id="obs" name="obs" type="text" placeholder=""  class="form-control">
+                            </div>
+                        </div>
                         <br>
                         <!-- Form actions -->
                         <div class="form-group">
@@ -156,6 +162,9 @@
         <!--<script src="js/material.js"></script>??????-->
         <script src="js/ripples.js" type="text/javascript"></script>
         <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <script src="js/ajaxhab.js"></script>
+        <script src="js/blockUI.js"></script>
+        <script src="js/toastr.js"></script>
         <script>function index() {
                                         $.material.init();
                                     }</script>

@@ -3,11 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function espera(){
+       javascript:location.reload();
+           
+}
 function Ingresarpropiedad() { 
 
    
     var name = document.getElementById('name').value;
-    var inc= document.getElementById('inc').value;
+    var inc= 0;
     
     var xhttp = new XMLHttpRequest();
     var msg = "";
@@ -33,31 +37,33 @@ function Ingresarpropiedad() {
       	return 0; 
        }
       
-        if (inc===""){ 
-      	 toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-bottom-full-width",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-                toastr.warning("Error el valor del incremento no es valido", "Ooops!");
-      	return 0; }
+        //if (inc===""){ 
+      	// toastr.options = {
+                  //  "closeButton": false,
+                   // "debug": false,
+                  //  "newestOnTop": false,
+                   // "progressBar": false,
+                  //  "positionClass": "toast-bottom-full-width",
+                  //  "preventDuplicates": false,
+                  //  "onclick": null,
+                  //  "showDuration": "300",
+                   // "hideDuration": "1000",
+                   // "timeOut": "5000",
+                   // "extendedTimeOut": "1000",
+                   // "showEasing": "swing",
+                   // "hideEasing": "linear",
+                   // "showMethod": "fadeIn",
+                   // "hideMethod": "fadeOut"
+               // };
+               // toastr.warning("Error el valor del incremento no es valido", "Ooops!");
+      	//return 0; }
     else{
     xhttp.onreadystatechange = function () {
+     
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if (xhttp.responseText.indexOf('error') > -1) {
                 msg = "error";
+                
                 $.unblockUI();
                 var sub = xhttp.responseText;
                 toastr.options = {
@@ -80,6 +86,7 @@ function Ingresarpropiedad() {
                 toastr.error(sub, "Ooops!");
                 //esto es lo q sale en rojo
             } else {
+                
                 $.unblockUI();
                 var sub = xhttp.responseText;
                 toastr.options = {
@@ -109,7 +116,8 @@ function Ingresarpropiedad() {
     };
 
     $.blockUI({
-        message: 'Registrando Habitacion',
+        
+        message: 'Registrando Propiedad',
         css: {
             border: 'none',
             padding: '25px',
@@ -122,9 +130,7 @@ function Ingresarpropiedad() {
     var text = "registradopropiedadesHab.jsp?name="+name+"&inc="+inc;
     xhttp.open("post", text, true); 
     xhttp.send();
-}}
-function espera(){
-       javascript:location.reload();
-           
 }
 
+
+}

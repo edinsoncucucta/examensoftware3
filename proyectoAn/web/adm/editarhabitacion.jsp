@@ -1,24 +1,25 @@
 <%-- 
-    Document   : editar
-    Created on : 14/05/2016, 05:46:44 PM
+    Document   : Datos_hotel
+    Created on : 4/05/2016, 06:45:15 AM
     Author     : EDINSON
 --%>
 
-  
- <%
-        int Param1= Integer.parseInt(request.getParameter ("id"));
-        %>
-  <%@page import="co.ufps.edu.dao.daohabitaciones"%>
+<%@page import="co.ufps.edu.dto.habitaciones"%>
+<%@page import="co.ufps.edu.dao.daohabitaciones"%>
+<%@page import="co.ufps.edu.dto.empleado"%>
+<%@page import="facade.ControladorNegocio"%>
+<%@page import="co.ufps.edu.dao.datoshoteldao"%>
+<%@page import="co.ufps.edu.dto.principal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
     <head>
-   
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>REGISTRO ACTUALIZACION DE HABITACIONES</title>
 
-  <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DATOS DEL HOTEL</title>
+
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
         <link href="css/bootstrap-theme.css.map" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap.css.map" rel="stylesheet">
@@ -38,18 +39,23 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
         <![endif]-->
-</head>
 
-<body>
-		<jsp:include page="menuadm.jsp"></jsp:include>
-									
+    </head>
+
+    <body onload="index();">
+        <jsp:include page="menuadm.jsp"></jsp:include>
+							
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header text-center">Actualizar datos de las habitacion</h1>
 			</div>
 		</div><!--/.row-->
 		
-		
+		<%
+        int Param1= Integer.parseInt(request.getParameter ("id"));
+        daohabitaciones h=new daohabitaciones();
+        habitaciones n= h.consultarid(Param1);
+        %>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -83,14 +89,14 @@
 								</div>
                                                                 <!-- Estado input-->
 								<div class="form-group">
-									<label class="col-md-2 control-label" for="estado">Estado de la Habitacion</label>
+									<label class="col-md-2 control-label" for="estado">Tipo Estado de una Habitacion</label>
 									<div class="col-md-10">
 										 <select class="form-control" name="estado">
                                                                         <option selected value="0"> Elige una opción </option>
                                                                         <%
                                                                         
-                                                                        String n=hab.estados();
-                                                                        out.println(n);
+                                                                        String x=hab.estados();
+                                                                        out.println(x);
                                                                         %>
 									</select>
 									</div>
@@ -103,7 +109,12 @@
 										<input id="foto" name="foto" type="text" placeholder="prin/img/property_3.jpg" class="form-control">
 									</div>
 								</div>
-                                                                
+                                                                <div class="form-group">
+                                                            <label class="col-md-2 control-label" for="obs">Observaciones de la Habitacion</label>
+                                                               <div class="col-md-10">
+                                                            <input id="obs" name="obs" type="text" placeholder=""  class="form-control">
+                                                                 </div>
+                                                                  </div>
  
                                                                  
 								
@@ -126,45 +137,44 @@
 		</div><!--/.row-->
 		<div class="col-md-12">
                                               <%
-            daohabitaciones h=new daohabitaciones();
+            
            out.print(h.habitaciones());
             %>
                 </div>
-					
-				</div>
-				
-        
- 
-		  
 
- <script src="js/jquery-2.1.4.min.js"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/tether.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/material.js"></script>
-        <!--<script src="js/materialize.js"></script>
 
-        <script src="js/chart.min.js"></script>
+        <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="js/tether.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.js" type="text/javascript"></script>
+        <script src="js/materialize.js" type="text/javascript"></script>
+
+        <!--<script src="js/chart.min.js"></script>
         <script src="js/chart-data.js"></script>
-        <script src="js/easypiechart.js"34></script>
+        <script src="js/easypiechart.js"></script>
         <script src="js/easypiechart-data.js"></script>
        
         <!--<script src="js/material.js"></script>??????-->
-        <script src="js/ripples.js"></script>
-         <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/ripples.js" type="text/javascript"></script>
+        <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
         <script>function index() {
-           $.material.init();
+            $.material.init();
         }</script>
-	<script>
-		
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
-</body>
+        <script>
+
+
+            $(window).on('resize', function () {
+                if ($(window).width() > 768)
+                    $('#sidebar-collapse').collapse('show')
+            })
+            $(window).on('resize', function () {
+                if ($(window).width() <= 767)
+                    $('#sidebar-collapse').collapse('hide')
+            })
+        </script>	
+    </body>
+
 
 </html>
