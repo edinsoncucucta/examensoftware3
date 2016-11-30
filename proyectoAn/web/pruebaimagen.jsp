@@ -14,6 +14,6 @@
     <body>
         <h1>Hello World!</h1>
         
-        <img src="../imagenes/hab/125.jpg">
+        <img src="imagenes/hab/125.jpg">
     </body>
 </html>

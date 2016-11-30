@@ -494,6 +494,51 @@ public habitaciones consultarid(int id){
        }
     return n;
 }
+<<<<<<< HEAD
+ public String idHabitaciones(){
+       ResultSet    msm= getCnn().consultaTabla("SELECT id_hab From habitaciones;");
+       String opcion=""; 
+    try {
+        while(msm.next()){
+             opcion+="<option value=\""+msm.getInt(1)+"\">"+msm.getString(1)+"</option>"; 
+       
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return opcion;
+        }
+ 
+ public void insertarFotos(int id_hab, String foto){
+     int id= obtenerid();
+     
+             String sql ="INSERT INTO fotoshab VALUES ("+id_hab+",'"+ foto+"',"+ id+");";
+        
+       SQLException exe= getCnn().insertar(sql);
+            if(exe==null){
+                System.out.print("ingreso exitoso");
+            }
+       
+     
+     
+     
+ }
+ public int obtenerid(){
+         ResultSet res= getCnn().consultaTabla("select max(id)+1 from fotoshab;");
+       int id=0; 
+       try {
+           if(res.next()){
+               if(res.getInt(1)==0){
+                    id=1;
+                }else{
+                id= res.getInt(1);}
+           }
+       } catch (SQLException ex) {
+           Logger.getLogger(tipohabitaciondao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return id;
+     }
+=======
 
 
 public ArrayList<fotosHab> traerfotoscuarto(int id){
@@ -558,4 +603,5 @@ public ArrayList<fotosHab> traerfotoscuarto(int id){
                 return fotos;
 }
 
+>>>>>>> origin/master
 }
