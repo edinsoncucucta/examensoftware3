@@ -453,6 +453,84 @@ public class facturaDAO {
                 return r;
     }
     
+     
+     
+     
+     
+     
+     
+     public ArrayList<factura> facturaporhuesped(int cedula){
+     		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                
+                ArrayList<factura>facturas= new ArrayList();
+                
+                
+		try {
+			
+			 con = conexion.conectar("");
+			
+			String sql = "SELECT factura.* " +
+                            "FROM factura " +
+                        "JOIN huesped " +
+                            "ON huesped.id=factura.id_huesped where huesped.cedula=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, cedula);
+                       
+			rst = ps.executeQuery();
+                        
+			
+			while(rst.next()){
+                         factura r= new factura();
+                              r.setTotal(rst.getInt("total"));
+                         r.setId(rst.getInt("id_fac"));
+                        facturas.add(r);
+                         
+                               
+			}
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			        if (rst != null) {
+        try {
+            rst.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (ps != null) {
+        try {
+            ps.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (con != null) {
+        try {
+            con.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+                    
+                    
+                    
+                    
+                    
+						
+			ps=null;
+			con=null;
+                        rst=null;
+                        
+		}
+                return facturas;
+    }
+    
+     
+     
+     
+     
+     
+     
   public String BuscarFacturas(String ini, String fin) throws SQLException{
         String sql="select * from factura where fecha::timestamp::date >='"+ini+"' and fecha::timestamp::date <='"+fin+"';";
       ResultSet   msm= getCnn().consultaTabla(sql);

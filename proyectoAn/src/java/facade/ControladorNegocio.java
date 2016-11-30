@@ -190,4 +190,8 @@ public class ControladorNegocio {
      public ArrayList<Servicios>serviciosporreserva(int id_reserva){
          return reserva.serviciosporreserva(id_reserva);
      }
+     
+     public ArrayList<factura>facporhuesped(int cc){
+         return reserva.facturaporhuesped(cc);
+     }
 }

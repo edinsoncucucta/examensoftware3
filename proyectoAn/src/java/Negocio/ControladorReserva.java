@@ -94,4 +94,7 @@ public class ControladorReserva {
     public ArrayList<Servicios>serviciosporreserva(int id_reserva){
         return reserva.serviciosporreserva(id_reserva);
     }
+    public ArrayList<factura>facturaporhuesped(int cc){
+        return factura.facturaporhuesped(cc);
+    }
 }

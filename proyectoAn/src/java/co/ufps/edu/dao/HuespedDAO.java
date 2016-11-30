@@ -222,7 +222,7 @@ public class HuespedDAO {
 			if(conexion.getConnection()==null) con = conexion.conectar("");
 			else con= conexion.getConnection();
 			String sql = "SELECT * FROM huesped "
-					+    "WHERE cc = ? ";
+					+    "WHERE cedula = ? ";
 			ps = con.prepareStatement(sql);
                         ps.setInt(1,cc);
 			
@@ -231,10 +231,10 @@ public class HuespedDAO {
 			
 			if(rst.next()){
 				h = new Huesped();
-                                h.setCc(rst.getInt("cc"));
-                                h.setIdcliente(rst.getInt("idcliente"));
+                                h.setCc(rst.getInt("cedula"));
+                                h.setIdcliente(rst.getInt("id"));
                                 h.setNacionalidad(rst.getString("nacionalidad"));
-                                h.setNombre(rst.getString("nombre"));
+                                h.setNombre(rst.getString("nombres"));
                                 h.setProcedencia(rst.getString("procedencia"));
                                 huespeds.add(h);
 			
