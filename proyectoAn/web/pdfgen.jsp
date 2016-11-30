@@ -4,6 +4,7 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.Servicios"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="co.ufps.edu.dto.factura"%>
 <%@page import="co.ufps.edu.dto.propiedadeshab"%>
@@ -74,21 +75,21 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     imagenUno.setBorderColor(BaseColor.WHITE);
     tablaEncabezado.addCell(imagenUno);
 
-    PdfPCell titulo = new PdfPCell(new Paragraph("Hotel Proyecto de Software", FontFactory.getFont("arial", 14, Font.BOLD)));
+    PdfPCell titulo = new PdfPCell(new Paragraph("  Proyecto de Software", FontFactory.getFont("arial", 14, Font.BOLD)));
     titulo.setColspan(4);
     titulo.setRowspan(1);
     titulo.setHorizontalAlignment(Element.ALIGN_CENTER);
     titulo.setBorderColor(BaseColor.WHITE);
     tablaEncabezado.addCell(titulo);
 
-    PdfPCell imagenDos = new PdfPCell(new Paragraph("Logo 2", FontFactory.getFont("arial", 16, Font.BOLD)));
+    PdfPCell imagenDos = new PdfPCell(new Paragraph("", FontFactory.getFont("arial", 16, Font.BOLD)));
     imagenDos.setColspan(1);
     imagenDos.setRowspan(4);
     imagenDos.setHorizontalAlignment(Element.ALIGN_CENTER);
     imagenDos.setBorderColor(BaseColor.WHITE);
     tablaEncabezado.addCell(imagenDos);
 
-    PdfPCell eslogan = new PdfPCell(new Paragraph("Slogan del Hotel",
+    PdfPCell eslogan = new PdfPCell(new Paragraph("Tu casa",
             FontFactory.getFont("arial", 10)));
     eslogan.setColspan(4);
     eslogan.setRowspan(1);
@@ -411,6 +412,9 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     
     ArrayList<propiedadeshab>propiedades= new ArrayList();
     propiedades=c.porpiedadesportipo(h.getTipo());
+    ArrayList<Servicios>servis=new ArrayList();
+    servis=c.serviciosporreserva(r.getId());
+    
     PdfPCell usoColegio = new PdfPCell(new Paragraph("SERVICIOS ADICIONALES",
             FontFactory.getFont("arial", 14, Font.BOLD, colorLetra)));
     usoColegio.setBackgroundColor(colorTitulo);
@@ -422,8 +426,8 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(usoColegio);
 
     //LISTA PARA REGISTRO CIVIL
-    int num=propiedades.size();
-    for(propiedadeshab p : propiedades){
+    int num=servis.size();
+    for(Servicios p : servis){
         ZapfDingbatsList listadoRegisCivil = new ZapfDingbatsList(52, 4);
     ListItem regisCivil = new ListItem(" ", FontFactory.getFont("arial", 7, Font.BOLD));
     listadoRegisCivil.add(regisCivil);
@@ -439,7 +443,7 @@ String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     tablaFormulario.addCell(chuloRegistroCivil);
 
     //REGITRO CIVIL
-    PdfPCell registroCivil = new PdfPCell(new Paragraph(p.getDescripcion(),
+    PdfPCell registroCivil = new PdfPCell(new Paragraph(p.getNombre(),
             FontFactory.getFont("arial", 10)));
     registroCivil.setColspan(3);
     registroCivil.setRowspan(1);

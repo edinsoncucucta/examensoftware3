@@ -334,7 +334,7 @@ public class ReservaDAO {
 		ResultSet rst=null;
               
                 
-               Servicios s=new Servicios() ;
+               
 		ArrayList<Servicios>servis=new ArrayList();
                try {
 			
@@ -353,6 +353,7 @@ public class ReservaDAO {
 			rst = ps.executeQuery();
 			
 			while(rst.next()){
+                            Servicios s=new Servicios() ;
                             s.setId(rst.getInt("id"));
                             s.setNombre(rst.getString("nombre"));
                             s.setPrecio(rst.getInt("precio"));

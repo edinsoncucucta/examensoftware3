@@ -51,6 +51,7 @@
                         
 			<li><a href="buscarReserva.jsp"> <i class="medium material-icons">vpn_key</i>Reservas</a></li>
                         <li><a href="addproducto.jsp"> <i class="medium material-icons">shopping_cart</i>Pedir Servicios</a></li>
+                        <li><a href="historiaServi.jsp"> <i class="medium material-icons">shopping_cart</i>Historial de Servicios</a></li>
 			<li class="parent ">
 				
 				<ul class="children collapse" id="sub-item-1">
@@ -72,8 +73,7 @@
 				</ul>
 			</li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="login.jsp"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li>
-		</ul>
+			
 		
 	</div><!--/.sidebar-->
 		
