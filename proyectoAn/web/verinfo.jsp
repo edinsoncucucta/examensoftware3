@@ -4,6 +4,11 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.propiedadeshab"%>
+<%@page import="co.ufps.edu.dto.propiedadeshab"%>
+<%@page import="co.ufps.edu.dto.fotosHab"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.ParseException"%>
 <%@page import="java.util.Date"%>
@@ -150,12 +155,14 @@
                                                     
      <div class="modal-dialog" role="document">
          <h1>Mas imagenes del cuarto</h1>
+         <%ArrayList<fotosHab>fotos=c.fotoshabitacion(h.getId());%>
          
-         <img class="materialboxed" data-caption="A picture of some deer and tons of trees" width="250" src="<%=h.getFoto()%>" width="100" height="200">
+         <%for (fotosHab f:fotos){%>
+         <img class="materialboxed" data-caption="A picture of some deer and tons of trees" width="250" src="<%=f.getUrl()%>" width="100" height="200">
       
          
          
-         
+         <%}%>
          
      
          <div class="modal-footer">
@@ -178,7 +185,30 @@
                             <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <div class="collapsible-header center-block"><h3>Servicios</h3></div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+      <div class="collapsible-body">
+          
+          
+              
+          <% ArrayList<propiedadeshab>propiedades= new ArrayList();
+          
+          propiedades=c.porpiedadesportipo(h.getTipo());
+          %>
+          
+  <ul class="collection">
+   <%for(propiedadeshab pro:propiedades){%>
+    <li class="collection-item avatar">
+      <i class="material-icons circle green">insert_chart</i>
+      <span class="title"><%=pro.getDescripcion()%></span>
+      <p>Incremento : <br>
+      %<%=pro.getInc()%>
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+    
+    <%}%>
+  </ul>
+          
+      </div>
     </li>
    
   </ul>

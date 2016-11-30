@@ -11,6 +11,7 @@ import co.ufps.edu.dao.propiedadeshabDAO;
 import co.ufps.edu.dao.tipoHabitacionesDAO;
 import co.ufps.edu.dto.EstadoHabitacion;
 import co.ufps.edu.dto.TipoHabitacion;
+import co.ufps.edu.dto.fotosHab;
 import co.ufps.edu.dto.habitaciones;
 import co.ufps.edu.dto.propiedadeshab;
 import java.util.ArrayList;
@@ -73,5 +74,10 @@ public class ControladorHabitacion {
    public ArrayList<propiedadeshab> propiedadesportipo(int idtipo){
       return  propiedades.buscarpropiedadespor(idtipo);
        
+   }
+   
+   
+   public ArrayList<fotosHab>fotoshabitacion(int id_hab){
+       return habi.traerfotoscuarto(id_hab);
    }
 }
