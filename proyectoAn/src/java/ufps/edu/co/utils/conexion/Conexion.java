@@ -23,9 +23,9 @@ public class Conexion {
 	long tiempo_inicio = -1;
   	long tiempo_total = 0;
   
-  	private final static String url ="jdbc:postgresql://sandbox2.ufps.edu.co:5432/hotelesoft";//local
-	private String usuario="ufps_19";	
-	private String password="ufps_po";
+  	private final static String url ="jdbc:postgresql://localhost:5432/pyecton";//local
+	private String usuario="postgres";	
+	private String password="macaco123";
 
 	private final static String driver = "org.postgresql.Driver";			
 	private String error;

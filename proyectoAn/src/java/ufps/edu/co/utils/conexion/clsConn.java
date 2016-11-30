@@ -26,9 +26,9 @@ public class clsConn implements Serializable{
     Statement st=null;
     String driver="org.postgresql.Driver";
 
-    String url="jdbc:postgresql://sandbox2.ufps.edu.co:5432/hotelesoft";
-    String userDB="ufps_19";
-    String passDB="ufps_po";
+    String url="jdbc:postgresql://localhost:5432/pyecton";
+    String userDB="postgres";
+    String passDB="macaco123";
 
 
     public clsConn(){
