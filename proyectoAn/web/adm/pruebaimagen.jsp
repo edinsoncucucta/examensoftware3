@@ -14,6 +14,6 @@
     <body>
         <h1>Hello World!</h1>
         
-        <img src="/usr/share/apache-tomcat-7.0.27/webapps/ufps_19-proyectoAn/imagenes/hab/14.jpg">
+        <img src="../imagenes/hab/125.jpg">
     </body>
 </html>
