@@ -93,7 +93,7 @@
           <div class="card">
             <div class="card-image">
               <img  src="<%=c1.getFoto()%>">
-              <span class="card-title">Cuarto <%=c1.getId()%></span>
+              <span class="card-title"><FONT SIZE=8> Cuarto <%=c1.getId()%></FONT> </span>
             </div>
             <div class="card-content">
                 
@@ -102,9 +102,10 @@
               <p><p> <%=c1.getObservacion()%></p>.</p>
             </div>
             <div class="card-action">
+                <p><input type="hidden"  name="id" value="<%=c1.getId()%>"></p>
            <button type="submit" class="btn btn-success btn-lg">ver info</button>
                                                      
-                                                           <p><input type="hidden"  name="id" value="<%=c1.getId()%>"></p>
+                                                           
             </div>
           </div>
         	

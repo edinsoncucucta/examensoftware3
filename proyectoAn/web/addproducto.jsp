@@ -93,8 +93,8 @@ if(registro!=null){
 							<form role="form">
 							
 								<div class="form-group">
-									<label>Digite El numero del cuarto</label>
-									<input class="form-control" placeholder="#cuarto" name="cc">
+									<label><FONT SIZE=5># de cuarto</FONT></label>
+									<input class="form-control" name="cc">
 								</div>
 																
 								<div class="form-group">

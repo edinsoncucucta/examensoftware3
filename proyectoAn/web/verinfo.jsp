@@ -121,7 +121,7 @@
                 
                                
 
-              <p><p> <%=h.getObservacion()%></p>.</p>
+              <p><FONT SIZE=5>  <%=h.getObservacion()%></FONT>.</p>
             </div>
             <div class="card-action">
                                 <form action="buscar.jsp" method="POST">

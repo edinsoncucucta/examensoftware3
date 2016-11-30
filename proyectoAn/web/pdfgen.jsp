@@ -42,7 +42,7 @@ String relativeWebPath = "/";
 String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
     FileOutputStream archivo = new FileOutputStream(absoluteDiskPath+"/123.pdf");
     System.out.println("user... " + System.getProperty("user.dir"));
-    Image img = Image.getInstance(absoluteDiskPath+"/logo1.png");
+    Image img = Image.getInstance(absoluteDiskPath+"/Logo.png");
     Document documento = new Document(PageSize.LETTER, 5, 5, 5, 5);
      PdfWriter.getInstance(documento, response.getOutputStream());
 

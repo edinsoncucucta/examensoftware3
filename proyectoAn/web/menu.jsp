@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="adm/css/font-awesome.css" rel="stylesheet">
         <title>JSP Page</title>
     </head>
     <body>
@@ -45,10 +46,11 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li><a href="cuartos.jsp"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Cuartos</a></li>
-                        <li><a href="buscarReserva.jsp"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Buscar Reserva</a></li>
-			<li class="active"><a href="addproducto.jsp"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> añadir Servicio</a></li>
-			
+                      <li><a href="cuartos.jsp"> <i class="medium material-icons">assignment_ind</i>Cuartos</a></li>
+                    
+                        
+			<li><a href="buscarReserva.jsp"> <i class="medium material-icons">vpn_key</i>Reservas</a></li>
+                        <li><a href="addproducto.jsp"> <i class="medium material-icons">shopping_cart</i>Pedir Servicios</a></li>
 			<li class="parent ">
 				
 				<ul class="children collapse" id="sub-item-1">
