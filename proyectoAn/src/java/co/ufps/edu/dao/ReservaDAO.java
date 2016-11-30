@@ -6,6 +6,7 @@
 package co.ufps.edu.dao;
 import co.ufps.edu.dto.Huesped;
 import co.ufps.edu.dto.Reserva;
+import co.ufps.edu.dto.Servicios;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ import ufps.edu.co.utils.conexion.clsConn;
  */
 public class ReservaDAO {
     
-    private Conexion conexion;
+    private Conexion conexion= new Conexion();
     private clsConn cnn;
     
     public clsConn getCnn() {
@@ -260,13 +261,148 @@ public class ReservaDAO {
                 return r;
     
 }
+//    public Reserva updateReserva(Reserva f){
+//                       java.sql.Timestamp fecha = new java.sql.Timestamp(f.getFechafin().getTime().getTime());
+//
+//  String sql="UPDATE reserva SET fechafin='"+fecha+"', estado="+3+" WHERE id="+f.getId()+";";
+//    int i=getCnn().actualizar(sql);
+//    
+//   return f;
+//   
+//  
+//  }
+    
     public Reserva updateReserva(Reserva f){
+        
+         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+		
+		Connection con=null;
+		PreparedStatement ps=null;
                        java.sql.Timestamp fecha = new java.sql.Timestamp(f.getFechafin().getTime().getTime());
 
-  String sql="UPDATE reserva SET fechafin='"+fecha+"', estado="+3+" WHERE id="+f.getId()+";";
-    int i=getCnn().actualizar(sql);
-   return f;
-  }
+		
+		try {
+			
+			
+                           con = conexion.conectar("");
+		
+                     
+			String sql = "UPDATE reserva set fechafin=?, estado=? where id=? ";
+				
+			ps = con.prepareStatement(sql);
+			ps.setTimestamp(1, fecha);
+                        //ps.setString(2, sdf.format(reserva.getFechainicio().getTime()));
+                        ps.setInt(2, f.getEstado());
+                        ps.setInt(3, f.getId());
+                       
+                        
+			int consulta = ps.executeUpdate();
+			//consulta tablas que se actualizaron 
+			if(consulta!=1){
+                            f=null;
+				
+			}
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			
+                       
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+				
+			}
+						
+			ps=null;
+			con=null;
+		}
+        
+        return f;
+    }
     
     
+    
+    
+    
+    public ArrayList<Servicios>serviciosporreserva(int id_reserva){
+        Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+              
+                
+               Servicios s=new Servicios() ;
+		ArrayList<Servicios>servis=new ArrayList();
+               try {
+			
+			
+                            con = conexion.conectar("");
+                      
+                       
+			String sql = "SELECT servicio.* " +
+                                "FROM servicio " +
+                                "INNER JOIN item " +
+                                     "ON servicio.id=item.id_ser where item.id_reserva=?;";
+			ps = con.prepareStatement(sql);
+                       ps.setInt(1,id_reserva);
+			
+                       
+			rst = ps.executeQuery();
+			
+			while(rst.next()){
+                            s.setId(rst.getInt("id"));
+                            s.setNombre(rst.getString("nombre"));
+                            s.setPrecio(rst.getInt("precio"));
+				
+                          
+                              servis.add(s);
+                               
+			
+                        }
+                        
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			if (rst != null) {
+        try {
+            rst.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (ps != null) {
+        try {
+            ps.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (con != null) {
+        try {
+            
+            //con.close();
+            //conexion.cerrarConexion();
+            
+           
+            conexion.getConnection().close();
+            
+          
+        } catch (SQLException e) { /* ignored */}
+    }
+                    
+                    
+                    
+                    
+                    
+						
+			ps=null;
+			con=null;
+                        rst=null;
+    }
+               
+        return servis;
+    }
 }

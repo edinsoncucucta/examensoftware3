@@ -90,4 +90,8 @@ public class ControladorReserva {
     public factura consultarfac(int id_reserva){
         return factura.consultarFacturaporreserva(id_reserva);
     }
+    
+    public ArrayList<Servicios>serviciosporreserva(int id_reserva){
+        return reserva.serviciosporreserva(id_reserva);
+    }
 }

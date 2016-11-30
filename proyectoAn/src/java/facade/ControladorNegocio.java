@@ -186,4 +186,8 @@ public class ControladorNegocio {
      public ArrayList<fotosHab>fotoshabitacion(int id){
          return h.fotoshabitacion(id);
      }
+     
+     public ArrayList<Servicios>serviciosporreserva(int id_reserva){
+         return reserva.serviciosporreserva(id_reserva);
+     }
 }

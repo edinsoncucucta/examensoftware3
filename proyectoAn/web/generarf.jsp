@@ -4,6 +4,9 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.Servicios"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="co.ufps.edu.dto.Huesped"%>
 <%@page import="co.ufps.edu.dto.empleado"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -227,7 +230,9 @@
 						    <thead>
 						    <tr>
 						        
-						        <th data-field="Servicios">  SERVICIOS</th>
+						        <th data-field="id">  ID</th>
+                                                         <th data-field="id">  Descripcion</th>
+                                                         <th data-field="id">  Precio</th>
                                                         
                                                      
 						    </tr>
@@ -236,19 +241,35 @@
                                                     
                                                                               
                                                      <tbody>
-     
-        <tr>
-            <%if(itemspedidos.size()==0){
+                                                         <%if(itemspedidos.size()==0){
                 
             %>
-           <td>no piido nada</td>  
-            <%}else{
-}          
-%>
+     
+        <tr>
+            
+           <td>no pidio nada</td>  
+          
       
         </tr>
+          <%}else{
+                
+            ArrayList<Servicios>ser=n.serviciosporreserva(reserva.getId());
+for(Servicios s:ser){
     
-       
+          
+%>
+    
+        <tr>
+            
+           <td><%=s.getId()%></td>  
+            <td><%=s.getNombre()%></td>  
+             <td><%=s.getPrecio()%></td> 
+          
+      
+        </tr>
+        
+        <%}
+                                                         }%>
     </tbody>
 						</table>
 					</div>
@@ -256,18 +277,24 @@
 			</div>
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Infrmacion del Huesped</div>
+					<div class="panel-heading">Infrmacion de la reserva</div>
 					<div class="panel-body">
 						<table data-toggle="table" id="table-style"  data-row-style="rowStyle">
 						    <thead>
 						    <tr>
-						        <th data-field="id" data-align="right" ><%=c.getId()%></th>
-						        <th data-field="name" ><%=c.getNombre()%></th>
-						        <th data-field="price" ><%=c.getNacionalidad()%></th>
+						        <th data-field="id" data-align="right" >Fecha Llegada</th>
+						        <th data-field="name" >Fecha salida</th>
+                                                         <th data-field="pago" >Total a pagar</th>
+						       
 						    </tr>
 						    </thead>
                                                                                    <tbody>
-     
+                                                                                       <tr>
+                                                                                           
+                                                                                         <td><%=sdf.format(reserva.getFechainicio().getTime())%></td>  
+            <td><%=sdf.format(reserva.getFechafin().getTime())%></td>   
+            <td><%=creada.getTotal()%></td> 
+                                                                                       </tr>
   
     
        
@@ -285,7 +312,7 @@
 			<div class="panel-body">
                             <form method="POST" action="pdfgen.jsp">
                                   <input type="hidden" name="id_factura" value="<%=fac.getId()%>">
-                                  <input type="submit" value="Elegir" class="btn btn-info" min="0"/>
+                                  <input type="submit" value="IMPRIMIR" class="btn btn-info" min="0"/>
                             </form>
                                                
 					</div>
