@@ -102,8 +102,9 @@
               <p><p> <%=c1.getObservacion()%></p>.</p>
             </div>
             <div class="card-action">
-                <p><input type="hidden"  name="id" value="<%=c1.getId()%>"></p>
-           <button type="submit" class="btn btn-success btn-lg">ver info</button>
+               
+                <a href="verinfo.jsp?id=<%=c1.getId()%>" class="btn btn-success btn-lg">Mas informacion</a>
+          
                                                      
                                                            
             </div>

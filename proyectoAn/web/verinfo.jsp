@@ -184,7 +184,7 @@
                                                 		<div class="center-block">
                             <ul class="collapsible popout" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header center-block"><h3>Servicios</h3></div>
+      <div class="collapsible-header center-block"><h3>Caracteristicas</h3></div>
       <div class="collapsible-body">
           
           
