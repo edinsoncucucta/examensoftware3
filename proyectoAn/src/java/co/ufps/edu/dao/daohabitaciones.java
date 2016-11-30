@@ -48,7 +48,7 @@ private Conexion conexion=new Conexion();
     public String insertar1(habitaciones h){
          String msm="error";
        
- String sql ="INSERT INTO habitaciones VALUES (1,"+h.getId()+","+ h.getTipo()+","+ h.getEstado()+",'"+h.getFoto()+"');";
+String sql ="INSERT INTO habitaciones VALUES (1,"+h.getId()+","+ h.getTipo()+","+ h.getEstado()+",'"+h.getFoto()+"','"+h.getObservacion()+"');";
         
       SQLException exe= getCnn().insertar(sql);
          
@@ -66,7 +66,7 @@ private Conexion conexion=new Conexion();
     public String insertar (habitaciones h){
         
         if(disponible(h.getId())){
-             String sql ="INSERT INTO habitaciones VALUES (1,"+h.getId()+","+ h.getTipo()+","+ h.getEstado()+",'"+h.getFoto()+","+h.getObservacion()+"');";
+             String sql ="INSERT INTO habitaciones VALUES (1,"+h.getId()+","+ h.getTipo()+","+ h.getEstado()+",'"+h.getFoto()+"','"+h.getObservacion()+"');";
         
        SQLException exe= getCnn().insertar(sql);
             if(exe==null){
@@ -106,7 +106,7 @@ return false;
                 h.setObservacion(msm.getString(6));
             }
         }   
-        String sql="UPDATE habitaciones SET id_hotel=1,tipo="+h.getTipo()+", estado="+h.getEstado()+", foto='"+h.getFoto()+", observacion='"+h.getObservacion()+"' WHERE id_hab="+h.getId()+";";
+        String sql="UPDATE habitaciones SET id_hotel=1,tipo="+h.getTipo()+", estado="+h.getEstado()+", foto='"+h.getFoto()+"', observacion='"+h.getObservacion()+"' WHERE id_hab="+h.getId()+";";
     int i=getCnn().actualizar(sql);
     } catch (SQLException ex) {
         Logger.getLogger(daohabitaciones.class.getName()).log(Level.SEVERE, null, ex);

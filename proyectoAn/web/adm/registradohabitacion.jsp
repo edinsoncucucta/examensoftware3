@@ -66,7 +66,7 @@ ruta2 += "imagenes/hab";
                     datos.setEstado(estado);
                     datos.setFoto(nueva);
                     datos.setObservacion(obs);
-                    m=hab.insertar1(datos);
+                    m=hab.insertar(datos);
                     System.out.println("esteee22222:::::" + m);
               //  msg = negocio.registrarHabitacion(id, descripcion, tipo, nueva, tarifa);
                 System.out.println(ruta2+" "+file.getFileName());

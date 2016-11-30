@@ -63,7 +63,7 @@
                                         out.println("<div class=\"panel-heading\"><svg class=\"glyph stroked email\"><use xlink:href=\"#stroked-email\"></use></svg> Actualizacion datos de la habitacion "+Param1+"</div>");
 					%>
                                                 <div class="panel-body">
-						<form class="form-horizontal" action="actualizarhabitacion.jsp" method="post">
+						<form class="form-horizontal" enctype="multipart/form-data" action="actualizarhabitacion.jsp" method="post">
 							<fieldset>
 								<!-- id input-->
 								<% 
@@ -106,13 +106,14 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="foto">Direccion de la foto</label>
 									<div class="col-md-10">
-										<input id="foto" name="foto" type="text" placeholder="prin/img/property_3.jpg" class="form-control">
-									</div>
+										<input id="foto" name="name" type="text" class="form-control">
+                                                                                <input type="file" name="archivo" accept=".jpg" >
+                                                                        </div>
 								</div>
                                                                 <div class="form-group">
                                                             <label class="col-md-2 control-label" for="obs">Observaciones de la Habitacion</label>
                                                                <div class="col-md-10">
-                                                            <input id="obs" name="obs" type="text" placeholder=""  class="form-control">
+                                                             <textarea id="obs" name="obs" type="text" placeholder=""  class="form-control"></textarea>
                                                                  </div>
                                                                   </div>
  
