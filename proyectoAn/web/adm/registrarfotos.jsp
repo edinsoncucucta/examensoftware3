@@ -54,14 +54,14 @@ ruta2 += "imagenes/hab";
             }
             if (file.getFileName() != null) {
                 File filess = new File(ruta2 + "/" + id + ".jpg");
-
+                int x=hab.obtenerid();
                 filess.delete();
-                file.setFileName(id_hab + ".jpg");
+                file.setFileName(id_hab +"_"+x+ ".jpg");
                 upBean.store(mrequest, "archivo");
-                nueva="imagenes/hab/"+id_hab+".jpg";
+                nueva="imagenes/hab/"+id_hab+"_"+x+".jpg";
                    
-                    hab.insertarFotos(id_hab, nueva);
-                    System.out.println("esteee22222:::::" + m);
+                    hab.insertarFotos(id_hab, nueva,x);
+                    System.out.println("esteee22222:::::" + nueva);
               //  msg = negocio.registrarHabitacion(id, descripcion, tipo, nueva, tarifa);
                 System.out.println(ruta2+" "+file.getFileName());
              //   System.out.println(nueva);

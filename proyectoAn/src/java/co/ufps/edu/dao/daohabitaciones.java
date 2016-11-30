@@ -509,8 +509,8 @@ public habitaciones consultarid(int id){
         return opcion;
         }
  
- public void insertarFotos(int id_hab, String foto){
-     int id= obtenerid();
+ public void insertarFotos(int id_hab, String foto,int id){
+   
      
              String sql ="INSERT INTO fotoshab VALUES ("+id_hab+",'"+ foto+"',"+ id+");";
         
@@ -538,6 +538,7 @@ public habitaciones consultarid(int id){
        }
        return id;
      }
+
 
 
 

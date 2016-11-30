@@ -60,7 +60,7 @@ ruta2 += "imagenes/hab";
                 filess.delete();
                 file.setFileName(id_hab + ".jpg");
                 upBean.store(mrequest, "archivo");
-                nueva="../imagenes/hab/"+id_hab+".jpg";
+                nueva="imagenes/hab/"+id_hab+".jpg";
                     datos.setId(id_hab);
                     datos.setTipo(tipo1);
                     datos.setEstado(estado);
