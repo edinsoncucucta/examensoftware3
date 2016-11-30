@@ -493,4 +493,8 @@ public habitaciones consultarid(int id){
        }
     return n;
 }
+
+
+
+
 }
