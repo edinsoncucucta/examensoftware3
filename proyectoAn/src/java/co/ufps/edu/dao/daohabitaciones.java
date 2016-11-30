@@ -494,7 +494,7 @@ public habitaciones consultarid(int id){
        }
     return n;
 }
-<<<<<<< HEAD
+
  public String idHabitaciones(){
        ResultSet    msm= getCnn().consultaTabla("SELECT id_hab From habitaciones;");
        String opcion=""; 
@@ -538,7 +538,7 @@ public habitaciones consultarid(int id){
        }
        return id;
      }
-=======
+
 
 
 public ArrayList<fotosHab> traerfotoscuarto(int id){
@@ -603,5 +603,5 @@ public ArrayList<fotosHab> traerfotoscuarto(int id){
                 return fotos;
 }
 
->>>>>>> origin/master
+
 }
