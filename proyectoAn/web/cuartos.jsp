@@ -45,7 +45,7 @@
 		<%
 
  empleado emp=(empleado)session.getAttribute("EmpleadoLogin");
- if(emp!=null){
+ if(true){
  
  %>
  

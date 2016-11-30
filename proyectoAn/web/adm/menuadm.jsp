@@ -59,6 +59,7 @@
     <li><a href="Datos_propiedadesTipoHab.jsp"><i class="fa fa-check-square-o fa-lg"></i> Caracteristicas habitacion</a></li>
     <li><a href="Estado_habitacion.jsp"><i class="fa fa-cogs fa-lg"></i> Tipos de estado de habitacion</a></li>
     <li><a href="Datos_habitacion.jsp"><i class="fa fa-bed fa-lg "></i>Habitacion</a></li>
+    <li><a href="fotoshab.jsp"><i class="fa fa-bed fa-lg "></i>Cargar Fotos</a></li>
     <li class="divider"></li>
     <li><a href="Estado_reserva.jsp"><i class="fa fa-cog fa-lg"></i> Tipos de estado reserva</a></li>
     <li><a href="datos_cargo.jsp"><i class="fa fa-street-view fa-lg"></i> Tipos de cargos de empleados</a></li>
@@ -66,7 +67,7 @@
     <li><a href="datos_asignacion_aseo.jsp"><i class="fa fa-clipboard fa-lg"></i> Asignacion liempieza</a></li>
     <li class="divider"></li>
     <li><a href="Datos_Huesped.jsp"><i class="fa fa-users fa-lg"></i> Huesped</a></li>
-  
+   <li><a href="buscarfactura.jsp"><i class="fa fa-users fa-lg"></i> Facturas</a></li>
 		</ul>
   <br>
   <br>

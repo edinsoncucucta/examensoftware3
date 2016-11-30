@@ -538,6 +538,8 @@ public habitaciones consultarid(int id){
        }
        return id;
      }
+<<<<<<< HEAD
+=======
 
 
 
@@ -603,5 +605,6 @@ public ArrayList<fotosHab> traerfotoscuarto(int id){
                 return fotos;
 }
 
+>>>>>>> origin/master
 
 }
