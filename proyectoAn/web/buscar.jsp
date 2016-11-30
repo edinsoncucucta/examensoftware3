@@ -128,7 +128,7 @@
 							<form role="form">
 							
 								<div class="form-group">
-									<label>Digite la cedula del huesped</label>
+									<label><FONT SIZE=5>Digite la cedula del Huesped</FONT></label>
 									<input class="form-control" placeholder="Cedula" name="cc">
 								</div>
 																

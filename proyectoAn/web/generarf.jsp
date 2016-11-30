@@ -4,6 +4,7 @@
     Author     : macaco
 --%>
 
+<%@page import="co.ufps.edu.dto.Huesped"%>
 <%@page import="co.ufps.edu.dto.empleado"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="co.ufps.edu.dto.TipoHabitacion"%>
@@ -156,6 +157,13 @@
        f.setServicios(concatena);
        factura creada=n.createfactura(f);
        
+       factura rae=n.consultarfacpor(reserva.getId());
+       
+       Huesped huesof=n.huespedoffactura(rae.getId());
+       habitaciones habi = n.habitacionoffactura(rae.getId());
+       
+       
+       
        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
        
        %>
@@ -174,16 +182,17 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Factura</div>
+					<div class="panel-heading">Cliente</div>
 					<div class="panel-body">
                                           
 						<table data-toggle="table">
 						    <thead>
 						    <tr>
-						        <th data-field="state" data-checkbox="true" > ID</th>
-						        <th data-field="id" data-sortable="true">Fecha Generada</th>
-						        <th data-field="name"  data-sortable="true">Descripcion</th>
-						        <th data-field="price" data-sortable="true">Total a pagar</th>
+						        <th data-field="ID" data-checkbox="true" > ID</th>
+						        <th data-field="Nombres" data-sortable="true">NOMBRE</th>
+						        <th data-field="Apellidos"  data-sortable="true">APELLIDOS</th>
+						        <th data-field="Direecion" data-sortable="true">DIRECCION</th>
+                                                        <th data-field="Pasaporte" data-sortable="true">PASAPORTE</th>
                                                           
 						    </tr>
 						    </thead>
@@ -191,10 +200,11 @@
                                                      <tbody>
      
         <tr>
-            <td><%=f.getId()%></td>
-            <td><%=sdf.format(f.getFechagenerada().getTime())%></td>
-            <td><%=f.getServicios()%></td>
-            <td>$<%=f.getTotal()%></td>
+            <td><%=huesof.getIdcliente()%></td>
+            <td><%=huesof.getNombre()%></td>
+            <td><%=huesof.getApellidos()%></td>
+            <td><%=huesof.getDir()%></td>
+            <td><%=huesof.getPasaporte()%></td>
         </tr>
     
        
@@ -205,21 +215,7 @@
 				</div>
 			</div>
                             
-                            <div class="col-md-12 " id="content23" style="display: none;" >
-                                <h1>Factura del Huesped  <%=c.getNombre()%></h1>
-                                
-                                
-                               
-                                <p>Servicios: <%=f.getServicios()%></p>
-                                <br>
-                                
-                                <p>Total a pagar: $<%=f.getTotal()%><p>
-                                <br>
-                                
-                                <p>Atendido por: <%=emp.getNombre()%></p>
-                             
-                                
-                            </div>
+                          
                               
 		</div><!--/.row-->	
 		<div class="row">
@@ -231,11 +227,29 @@
 						    <thead>
 						    <tr>
 						        
-						        <th data-field="Servicios">  <%=f.getServicios()%></th>
+						        <th data-field="Servicios">  SERVICIOS</th>
                                                         
                                                      
 						    </tr>
 						    </thead>
+                                                    
+                                                    
+                                                                              
+                                                     <tbody>
+     
+        <tr>
+            <%if(itemspedidos.size()==0){
+                
+            %>
+           <td>no piido nada</td>  
+            <%}else{
+}          
+%>
+      
+        </tr>
+    
+       
+    </tbody>
 						</table>
 					</div>
 				</div>

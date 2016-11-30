@@ -538,8 +538,6 @@ public habitaciones consultarid(int id){
        }
        return id;
      }
-<<<<<<< HEAD
-=======
 
 
 
@@ -553,8 +551,8 @@ public ArrayList<fotosHab> traerfotoscuarto(int id){
 		try {
 			
 			
-			if(conexion.getConnection()==null) con = conexion.conectar("");
-			else con= conexion.getConnection();
+			 con = conexion.conectar("");
+			
 			String sql = "SELECT * FROM fotosHab "
 					+    "WHERE id_hab = ? ";
 			ps = con.prepareStatement(sql);
@@ -605,6 +603,6 @@ public ArrayList<fotosHab> traerfotoscuarto(int id){
                 return fotos;
 }
 
->>>>>>> origin/master
+
 
 }

@@ -137,7 +137,7 @@ public class propiedadeshabDAO {
 			if(conexion==null) conexion= new Conexion();
 			if(conexion.getConnection()==null) con = conexion.conectar("");
 			else con= conexion.getConnection();
-			String sql = "SELECT propiedades.descripcion,propiedades.id,propiedades.incremento " +
+			String sql = "SELECT propiedades.descripcion,propiedades.id " +
                                 "FROM propiedades " +
                                     "JOIN propiedadesportipo " +
                                     "ON propiedades.id=propiedadesportipo.id_descripcion where propiedadesportipo.id_tipo=?";
@@ -151,7 +151,7 @@ public class propiedadeshabDAO {
                             pro= new propiedadeshab();
 				pro.setId(rst.getInt("id"));
                                pro.setDescripcion(rst.getString("descripcion"));
-                               pro.setInc(rst.getInt("incremento"));
+                               
                                
                                propiedades.add(pro);
                                

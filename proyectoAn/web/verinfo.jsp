@@ -199,8 +199,8 @@
     <li class="collection-item avatar">
       <i class="material-icons circle green">insert_chart</i>
       <span class="title"><%=pro.getDescripcion()%></span>
-      <p>Incremento : <br>
-      %<%=pro.getInc()%>
+      <p> <br>
+     
       </p>
       <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
     </li>
