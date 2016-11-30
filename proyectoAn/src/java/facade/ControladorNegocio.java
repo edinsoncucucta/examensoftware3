@@ -20,6 +20,7 @@ import co.ufps.edu.dto.Servicios;
 import co.ufps.edu.dto.TipoHabitacion;
 import co.ufps.edu.dto.empleado;
 import co.ufps.edu.dto.factura;
+import co.ufps.edu.dto.fotosHab;
 import co.ufps.edu.dto.habitaciones;
 import co.ufps.edu.dto.propiedadeshab;
 import java.util.ArrayList;
@@ -180,5 +181,9 @@ public class ControladorNegocio {
      
      public factura consultarfacpor(int id_reserva){
          return reserva.consultarfac(id_reserva);
+     }
+     
+     public ArrayList<fotosHab>fotoshabitacion(int id){
+         return h.fotoshabitacion(id);
      }
 }

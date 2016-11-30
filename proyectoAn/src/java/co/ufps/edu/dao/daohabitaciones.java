@@ -5,6 +5,7 @@
  */
 package co.ufps.edu.dao;
 
+import co.ufps.edu.dto.fotosHab;
 import co.ufps.edu.dto.habitaciones;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -495,6 +496,66 @@ public habitaciones consultarid(int id){
 }
 
 
-
+public ArrayList<fotosHab> traerfotoscuarto(int id){
+    
+   Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rst=null;
+                fotosHab  h =new fotosHab();
+                ArrayList<fotosHab>fotos=new ArrayList();
+		try {
+			
+			
+			if(conexion.getConnection()==null) con = conexion.conectar("");
+			else con= conexion.getConnection();
+			String sql = "SELECT * FROM fotosHab "
+					+    "WHERE id_hab = ? ";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+                       
+			rst = ps.executeQuery();
+			
+			while(rst.next()){
+				 h.setId_hab(rst.getInt("id_hab"));
+                                 h.setUrl(rst.getString("url"));
+                                 
+                                 fotos.add(h);
+                               
+			}
+			
+		} catch (Exception e) {
+                    System.out.println("error "+e.toString());
+			e.printStackTrace();
+			conexion.escribirLogs("UsuarioDao", "registrarUsuario", e.toString());
+                       
+		} finally {
+			        if (rst != null) {
+        try {
+            rst.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (ps != null) {
+        try {
+            ps.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+    if (con != null) {
+        try {
+            con.close();
+        } catch (SQLException e) { /* ignored */}
+    }
+                    
+                    
+                    
+                    
+                    
+						
+			ps=null;
+			con=null;
+                        rst=null;
+                        
+		}
+                return fotos;
+}
 
 }
